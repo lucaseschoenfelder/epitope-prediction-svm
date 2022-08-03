@@ -4,7 +4,8 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.metrics._scorer import make_scorer
 from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support
 from sklearn.preprocessing import StandardScaler
-
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
 
 from time import time
@@ -72,17 +73,15 @@ class Model():
                                                      sample_weight=sample_weight)
         return f
     
-    def grid_search(self, x, y, path_csv_result=None):
+    def grid_search(self, x, y, path_csv_result=None, model_param="SVC"):
         """Define o gridsearch para ser utilizado para valorar os melhores parâmetros para o modelo passado como parâmetro
 
             Utilizando o parâmetro path_csv_result o resultado completo do GridSearchCV será salvo no path fornecido
         """
 
-        logger.info("Iniciando GridSearchCV para o modelo")
+        logger.info(f"Iniciando GridSearchCV para o modelo {model_param}")
 
         time_init = time()
-
-        model = SVC(probability=True)
 
         cross_valid = StratifiedKFold(n_splits=5)
 
@@ -103,11 +102,47 @@ class Model():
                     'f1_micro': 'f1_micro'
                     }
 
-        params = {  'kernel': ['rbf'],
-                    'C': [1000, 500, 250, 100, 50, 25, 1, 0.1, 0.01, 0.001, 0.0001],
-                    'gamma': [100, 10, 1, 0.1, 0.01, 0.001, 0.0001]
-                    }
+
+        if model_param == "RF":
+            logger.info(f'Usando modelo Random Forest')
+            model = RandomForestClassifier()
+            params = { 
+                'n_estimators': [i for i in range(20, 1001, 20)],
+                'max_features': ['sqrt', None],
+                'min_samples_split' : [i for i in range(1, 11, 1)]
+            }
+        elif model_param == "AB":
+            logger.info(f'Usando modelo AdaBoost')
+            model = AdaBoostClassifier()
+            params = {
+                'n_estimators' : [i for i in range(20, 1001, 20)]
+            }
+        elif model_param == "GB":
+            logger.info(f'Usando modelo GradientBoost')
+            model = GradientBoostingClassifier()
+            params = {
+                'n_estimators' : [i for i in range(20, 1001, 20)],
+                'max_features': ['sqrt', None],
+                'min_samples_split' : [i for i in range(1, 11, 1)]
+            }
+        elif model_param == "MLP":
+            logger.info(f'Usando modelo Multilayer Perceptron')
+            model = MLPClassifier()
+            params = {
+                'activation' : ['logistic', 'tanh', 'relu'],
+                'solver' : ['lbfgs', 'adam'],
+                'learning_rate': ['constant','adaptive']
+            }
+        else:
+            logger.info(f'Usando modelo SVC')
+            model = SVC(probability=True)
+            params = {  
+                'kernel': ['rbf'],
+                'C': [500, 250],
+                'gamma': [0.001, 0.0001]
+            }    
         
+        logger.info(f'Params usados: {params}')
 
         grid_search = GridSearchCV(estimator=model,
                                    param_grid=params,
