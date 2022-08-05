@@ -153,24 +153,24 @@ if __name__=='__main__':
     if cli.get_arg_from_cli('ensemble'):
         grid_search = model.grid_search_ensemble(x, y, cli.get_arg_from_cli('result_path'))
 
-        results = grid_search.cv_results_
-        bi = grid_search.best_index_
+        # results = grid_search.cv_results_
+        # bi = grid_search.best_index_
 
-        logger.info(  f"Melhores resultados: \n \
-                        roc_auc: {results['mean_test_auc_score'][bi]},\n \
-                        accuracy: {results['mean_test_accuracy'][bi]},\n  \
-                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
-                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
-                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
-                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
-                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
-                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
-                        precision_micro:{results['mean_test_precision_micro'][bi]},\n \
-                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
-                        mcc -:{results['mean_test_mcc'][bi]}")
+        # logger.info(  f"Melhores resultados: \n \
+        #                 roc_auc: {results['mean_test_auc_score'][bi]},\n \
+        #                 accuracy: {results['mean_test_accuracy'][bi]},\n  \
+        #                 precision +:{results['mean_test_scores_p_1'][bi]},\n \
+        #                 recall +:{results['mean_test_scores_r_1'][bi]},\n \
+        #                 f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
+        #                 precision -:{results['mean_test_scores_p_0'][bi]},\n \
+        #                 recall -:{results['mean_test_scores_r_0'][bi]},\n \
+        #                 f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+        #                 precision_micro:{results['mean_test_precision_micro'][bi]},\n \
+        #                 f1 -:{results['mean_test_precision_macro'][bi]},\n \
+        #                 mcc -:{results['mean_test_mcc'][bi]}")
 
-        logger.info(f"Melhor score: {grid_search.best_score_}")
-        logger.info(f"Melhores parâmetros: {grid_search.best_params_}")
+        logger.info(f"Melhor score: {grid_search[1]}")
+        logger.info(f"Melhor combinação: {grid_search[0]}")
 
         time_end = time()
 

@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, Gradien
 from sklearn.tree import ExtraTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
-
+from itertools import combinations
 from time import time
 
 import numpy as np
@@ -74,47 +74,31 @@ class Model():
                                                      sample_weight=sample_weight)
         return f
 
-    def grid_search_ensemble(self, x, y, path_csv_result=None):
-        logger.info(f"Iniciando GridSearchCV para o modelo ensemble")
+    def cross_validate_ensemble(self, estimators, params, x, y, path_csv_result):
+        logger.info(f"Iniciando Cross Validate para o modelo ensemble")
 
         time_init = time()
 
         cross_valid = StratifiedKFold(n_splits=5)
 
-        scoring = { 'auc_score': 'roc_auc',
-                    'accuracy': 'accuracy',
-                    'scores_p_1': 'precision',
-                    'scores_r_1': 'recall',
-                    'scores_f_1_1': 'f1',
-                    'scores_p_0': make_scorer(Model.precision_0),
-                    'scores_r_0': make_scorer(Model.recall_0),
-                    'scores_f_1_0': make_scorer(Model.f1_0),
-                    'mcc': make_scorer(matthews_corrcoef),
-                    'precision_micro': 'precision_micro',
-                    'precision_macro': 'precision_macro', 
-                    'recall_macro': 'recall_macro',
-                    'recall_micro': 'recall_micro', 
-                    'f1_macro': 'f1_macro', 
-                    'f1_micro': 'f1_micro'
-                    }
-
-        rfc = RandomForestClassifier()
-        abc = AdaBoostClassifier()
-        gbc = GradientBoostingClassifier()
-        mlp = MLPClassifier()
-        etc = ExtraTreeClassifier()
-        svc = SVC(probability=True)
-        estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
-
-        params = {
-            'rfc__max_features': ['sqrt'], 'rfc__min_samples_split': [10], 'rfc__n_estimators': [860],
-            'abc__n_estimators': [60],
-            'gbc__max_features': [None], 'gbc__min_samples_split': [7], 'gbc__n_estimators': [100],
-            'mlp__activation': ['logistic'], 'mlp__learning_rate': ['adaptive'], 'mlp__max_iter': [1000], 'mlp__solver': ['adam'],
-            'etc__max_features': [None], 'etc__min_samples_split': [9], 'etc__splitter': ['random'],
-            'svc__C': [500], 'svc__gamma': [0.0001], 'svc__kernel': ['rbf']
+        scoring = { 
+            'auc_score': 'roc_auc',
+            'accuracy': 'accuracy',
+            'scores_p_1': 'precision',
+            'scores_r_1': 'recall',
+            'scores_f_1_1': 'f1',
+            'scores_p_0': make_scorer(Model.precision_0),
+            'scores_r_0': make_scorer(Model.recall_0),
+            'scores_f_1_0': make_scorer(Model.f1_0),
+            'mcc': make_scorer(matthews_corrcoef),
+            'precision_micro': 'precision_micro',
+            'precision_macro': 'precision_macro', 
+            'recall_macro': 'recall_macro',
+            'recall_micro': 'recall_micro', 
+            'f1_macro': 'f1_macro', 
+            'f1_micro': 'f1_micro'
         }
-
+        
         eclf = VotingClassifier(estimators, voting = 'soft', verbose = True)
 
         grid_search = GridSearchCV(estimator=eclf,
@@ -125,7 +109,6 @@ class Model():
                                    n_jobs=40, 
                                    verbose=2)
 
-    
         grid_search.fit(x, y)
 
         logger.info(f"Resultados obtidos em todos os treinamentos: {grid_search.cv_results_}")
@@ -139,7 +122,72 @@ class Model():
         logger.debug(f"Tempo gasto em segundos para executar o GridSearchCV: {time_end - time_init} segundos")
         logger.info("FInalizado GridSearchCV para o modelo")
         
-        return grid_search
+        return grid_search    
+
+    def grid_search_ensemble(self, x, y, path_csv_result=None):
+        logger.info(f"Iniciando GridSearchCV para o modelo ensemble")
+
+        time_init = time()
+
+        rfc = RandomForestClassifier()
+        abc = AdaBoostClassifier()
+        gbc = GradientBoostingClassifier()
+        mlp = MLPClassifier()
+        etc = ExtraTreeClassifier()
+        svc = SVC(probability=True)
+        estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
+
+        best_params_per_model = {
+            'rfc' : {
+                'rfc__max_features': ['sqrt'], 'rfc__min_samples_split': [10], 'rfc__n_estimators': [860]
+            },
+            'abc': {
+                'abc__n_estimators': [60]
+            },
+            'gbc' : {
+                'gbc__max_features': [None], 'gbc__min_samples_split': [7], 'gbc__n_estimators': [100]
+            },
+            'mlp' : {
+                'mlp__activation': ['logistic'], 'mlp__learning_rate': ['adaptive'], 'mlp__max_iter': [1000], 'mlp__solver': ['adam']
+            },
+            'etc' : {
+                'etc__max_features': [None], 'etc__min_samples_split': [9], 'etc__splitter': ['random']
+            },
+            'svc' : {
+                'svc__C': [500], 'svc__gamma': [0.0001], 'svc__kernel': ['rbf']
+            }
+        }
+
+        estimators_combinations = list()
+        for n in range(2, len(estimators) + 1):
+            estimators_combinations += list(combinations(estimators, n))
+        # for combination in estimators_combinations:
+        #     logger.info(f'combination : {combination}')
+
+        results = dict()
+        for combination in estimators_combinations:
+            params = dict()
+            path_to_ensemble_combination = f'{path_csv_result}_ensemble'
+            for model_tuple in combination:
+                params.update(best_params_per_model[model_tuple[0]])
+                path_to_ensemble_combination += f'_{model_tuple[0]}'
+            
+            cv_ensemble = self.cross_validate_ensemble(combination, params, x, y, path_to_ensemble_combination)
+            
+            combination_key = path_to_ensemble_combination.split("ensemble_")[1]
+
+            logger.info(f'Modelo {combination_key} obteve score {cv_ensemble.best_score_}')
+
+            results[combination_key] = cv_ensemble.best_score_
+
+            del params            
+        
+        logger.info(f'Fim do gridsearch ensemble. Resultados:')
+        for key, val in results.items():
+            logger.info(f'{key} : {val}')
+        
+        return (max(results, key=results.get), results[max(results, key=results.get)])
+        
 
     def grid_search(self, x, y, path_csv_result=None, model_param="SVC"):
         """Define o gridsearch para ser utilizado para valorar os melhores parâmetros para o modelo passado como parâmetro
