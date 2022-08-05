@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, Gradien
 from sklearn.tree import ExtraTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
+from sklearn.metrics import classification_report
 
 from time import time
 
@@ -74,6 +75,28 @@ class Model():
                                                      sample_weight=sample_weight)
         return f
     
+    def ensemble(self, x, y, path_csv_result=None):
+        rfc = RandomForestClassifier(max_features ='sqrt', min_samples_split = 10, n_estimators = 860)
+        abc = AdaBoostClassifier(n_estimators = 60)
+        gbc = GradientBoostingClassifier(max_features = None, min_samples_split = 7, n_estimators = 100)
+        mlp = MLPClassifier(activation = 'logistic', learning_rate = 'adaptive', max_iter = 1000, solver = 'adam')
+        etc = ExtraTreeClassifier(max_features = None, min_samples_split = 9, splitter = 'random')
+        svc = SVC(C = 500, gamma = 0.0001, kernel = 'rbf', probability = True)
+        estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
+
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+        logger.info(f'len(X_train) = {len(X_train)}')
+        logger.info(f'len(X_test) = {len(X_test)}')
+
+        ensemble = VotingClassifier(estimators, voting = 'hard', verbose = True)
+
+        ensemble.fit(X_train, y_train)
+        #score = ensemble.score(X_test, y_test)
+        predictions = ensemble.predict(X_test)
+        logger.info(f'{classification_report(y_test, predictions)}')
+        
+        return ensemble
+
     def grid_search(self, x, y, path_csv_result=None, model_param="SVC"):
         """Define o gridsearch para ser utilizado para valorar os melhores parâmetros para o modelo passado como parâmetro
 

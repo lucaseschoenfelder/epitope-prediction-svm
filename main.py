@@ -15,7 +15,6 @@ from sklearn.tree import ExtraTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import VotingClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
 
 # Definição para inicializar a Interface de linha de comando
 cli = Cli()
@@ -158,24 +157,7 @@ if __name__=='__main__':
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
     if cli.get_arg_from_cli('ensemble'):
-        rfc = RandomForestClassifier(max_features ='sqrt', min_samples_split = 10, n_estimators = 860)
-        abc = AdaBoostClassifier(n_estimators = 60)
-        gbc = GradientBoostingClassifier(max_features = None, min_samples_split = 7, n_estimators = 100)
-        mlp = MLPClassifier(activation = 'logistic', learning_rate = 'adaptive', max_iter = 1000, solver = 'adam')
-        etc = ExtraTreeClassifier(max_features = None, min_samples_split = 9, splitter = 'random')
-        svc = SVC(C = 500, gamma = 0.0001, kernel = 'rbf')
-        estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
-
-        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
-        logger.info(f'len(X_train) = {len(X_train)}')
-        logger.info(f'len(X_test) = {len(X_test)}')
-
-        ensemble = VotingClassifier(estimators, voting = 'hard', verbose = True)
-
-        ensemble.fit(X_train, y_train)
-        #score = ensemble.score(X_test, y_test)
-        predictions = ensemble.predict(X_test)
-        logger.info(f'{classification_report(y_test, predictions)}')
+        model = model.ensemble(x, y, cli.get_arg_from_cli('result_path'))
 
         time_end = time()
 
