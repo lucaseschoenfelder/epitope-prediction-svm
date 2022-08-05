@@ -9,12 +9,6 @@ from os.path import exists
 
 import sys
 import numpy as np
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
-from sklearn.tree import ExtraTreeClassifier
-from sklearn.neural_network import MLPClassifier
-from sklearn.ensemble import VotingClassifier
-from sklearn.model_selection import train_test_split
 
 # Definição para inicializar a Interface de linha de comando
 cli = Cli()

@@ -1,14 +1,13 @@
 from numpy import ndarray
 from sklearn.svm import SVC
-from sklearn.model_selection import GridSearchCV, StratifiedKFold
+from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
 from sklearn.metrics._scorer import make_scorer
-from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support
+from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support, classification_report
 from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier
 from sklearn.tree import ExtraTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
-from sklearn.metrics import classification_report
 
 from time import time
 
