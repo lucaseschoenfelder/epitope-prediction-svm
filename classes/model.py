@@ -110,7 +110,7 @@ class Model():
             params = { 
                 'n_estimators': [i for i in range(20, 1001, 20)],
                 'max_features': ['sqrt', None],
-                'min_samples_split' : [i for i in range(1, 11, 1)]
+                'min_samples_split' : [i for i in range(2, 11, 1)]
             }
         elif model_param == "AB":
             logger.info(f'Usando modelo AdaBoost')
@@ -124,7 +124,7 @@ class Model():
             params = {
                 'n_estimators' : [i for i in range(20, 1001, 20)],
                 'max_features': ['sqrt', None],
-                'min_samples_split' : [i for i in range(1, 11, 1)]
+                'min_samples_split' : [i for i in range(2, 11, 1)]
             }
         elif model_param == "MLP":
             logger.info(f'Usando modelo Multilayer Perceptron')
@@ -139,7 +139,7 @@ class Model():
             model = ExtraTreeClassifier()
             params = { 
                 'max_features': ['sqrt', None],
-                'min_samples_split' : [i for i in range(1, 11, 1)],
+                'min_samples_split' : [i for i in range(2, 11, 1)],
                 'splitter' : ['random', 'best']
             }
         else:
