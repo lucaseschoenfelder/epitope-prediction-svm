@@ -9,7 +9,12 @@ from os.path import exists
 
 import sys
 import numpy as np
-
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.tree import ExtraTreeClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import VotingClassifier
+from sklearn.model_selection import train_test_split
 
 # Definição para inicializar a Interface de linha de comando
 cli = Cli()
@@ -151,28 +156,57 @@ if __name__=='__main__':
 
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
-    grid_search = model.grid_search(x, target, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('model'))
+    if cli.get_arg_from_cli('ensemble'):
+        rfc = RandomForestClassifier(max_features ='sqrt', min_samples_split = 10, n_estimators = 860)
+        abc = AdaBoostClassifier(n_estimators = 60)
+        gbc = GradientBoostingClassifier(max_features = None, min_samples_split = 7, n_estimators = 100)
+        mlp = MLPClassifier(activation = 'logistic', learning_rate = 'adaptive', max_iter = 1000, solver = 'adam')
+        etc = ExtraTreeClassifier(max_features = None, min_samples_split = 9, splitter = 'random')
+        svc = SVC(C = 500, gamma = 0.0001, kernel = 'rbf')
 
-    results = grid_search.cv_results_
-    bi = grid_search.best_index_
+        estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
 
-    logger.info(  f"Melhores resultados: \n \
-                    roc_auc: {results['mean_test_auc_score'][bi]},\n \
-                    accuracy: {results['mean_test_accuracy'][bi]},\n  \
-                    precision +:{results['mean_test_scores_p_1'][bi]},\n \
-                    recall +:{results['mean_test_scores_r_1'][bi]},\n \
-                    f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
-                    precision -:{results['mean_test_scores_p_0'][bi]},\n \
-                    recall -:{results['mean_test_scores_r_0'][bi]},\n \
-                    f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
-                    precision_micro:{results['mean_test_precision_micro'][bi]},\n \
-                    f1 -:{results['mean_test_precision_macro'][bi]},\n \
-                    mcc -:{results['mean_test_mcc'][bi]}")
+        ensemble = VotingClassifier(estimators, voting = 'hard', verbose = True)
 
-    logger.info(f"Melhor score: {grid_search.best_score_}")
-    logger.info(f"Melhores parâmetros: {grid_search.best_params_}")
+        logger.info(f'ensemble.get_params : {ensemble.get_params()}')
 
-    time_end = time()
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
 
-    logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
-    logger.info("Aplicação finalizada")
+        logger.info(f'len(X_train) = {len(X_train)}')
+        logger.info(f'len(X_test) = {len(X_test)}')
+
+        ensemble.fit(X_train, y_train)
+
+        score = ensemble.score(X_test, y_test)
+        logger.info(f'Ensemble score = {score}')
+        
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+        logger.info("Aplicação finalizada")
+    else:
+        grid_search = model.grid_search(x, target, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('model'))
+
+        results = grid_search.cv_results_
+        bi = grid_search.best_index_
+
+        logger.info(  f"Melhores resultados: \n \
+                        roc_auc: {results['mean_test_auc_score'][bi]},\n \
+                        accuracy: {results['mean_test_accuracy'][bi]},\n  \
+                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
+                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
+                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
+                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
+                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
+                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+                        precision_micro:{results['mean_test_precision_micro'][bi]},\n \
+                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
+                        mcc -:{results['mean_test_mcc'][bi]}")
+
+        logger.info(f"Melhor score: {grid_search.best_score_}")
+        logger.info(f"Melhores parâmetros: {grid_search.best_params_}")
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+        logger.info("Aplicação finalizada")

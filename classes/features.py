@@ -321,7 +321,7 @@ class AAC():
         for pep in dataset:
             self.pypro.ReadProteinSequence(pep)
             aac_feature = self.pypro.GetAAComp()
-            print(list(aac_feature.values()))
+            #print(list(aac_feature.values()))
             feature_list.append(list(aac_feature.values()))
 
         time_end = time()
