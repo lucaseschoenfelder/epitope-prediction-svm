@@ -138,7 +138,6 @@ class Model():
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreeClassifier()
             params = { 
-                'n_estimators': [i for i in range(20, 1001, 20)],
                 'max_features': ['sqrt', None],
                 'min_samples_split' : [i for i in range(1, 11, 1)],
                 'splitter' : ['random', 'best']
