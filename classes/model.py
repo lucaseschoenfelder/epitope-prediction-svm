@@ -130,6 +130,7 @@ class Model():
             logger.info(f'Usando modelo Multilayer Perceptron')
             model = MLPClassifier()
             params = {
+                'max_iter' : [500],
                 'activation' : ['logistic', 'tanh', 'relu'],
                 'solver' : ['lbfgs', 'adam'],
                 'learning_rate': ['constant','adaptive']
