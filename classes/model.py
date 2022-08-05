@@ -5,6 +5,7 @@ from sklearn.metrics._scorer import make_scorer
 from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.tree import ExtraTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
 
@@ -132,6 +133,15 @@ class Model():
                 'activation' : ['logistic', 'tanh', 'relu'],
                 'solver' : ['lbfgs', 'adam'],
                 'learning_rate': ['constant','adaptive']
+            }
+        elif model_param == "ERT":
+            logger.info(f'Usando modelo Extremely Randomized Tree')
+            model = ExtraTreeClassifier()
+            params = { 
+                'n_estimators': [i for i in range(20, 1001, 20)],
+                'max_features': ['sqrt', None],
+                'min_samples_split' : [i for i in range(1, 11, 1)],
+                'splitter' : ['random', 'best']
             }
         else:
             logger.info(f'Usando modelo SVC')
