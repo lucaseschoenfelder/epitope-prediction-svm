@@ -73,28 +73,73 @@ class Model():
                                                      warn_for=('f-score',),
                                                      sample_weight=sample_weight)
         return f
-    
-    def ensemble(self, x, y, path_csv_result=None):
-        rfc = RandomForestClassifier(max_features ='sqrt', min_samples_split = 10, n_estimators = 860)
-        abc = AdaBoostClassifier(n_estimators = 60)
-        gbc = GradientBoostingClassifier(max_features = None, min_samples_split = 7, n_estimators = 100)
-        mlp = MLPClassifier(activation = 'logistic', learning_rate = 'adaptive', max_iter = 1000, solver = 'adam')
-        etc = ExtraTreeClassifier(max_features = None, min_samples_split = 9, splitter = 'random')
-        svc = SVC(C = 500, gamma = 0.0001, kernel = 'rbf', probability = True)
+
+    def grid_search_ensemble(self, x, y, path_csv_result=None):
+        logger.info(f"Iniciando GridSearchCV para o modelo ensemble")
+
+        time_init = time()
+
+        cross_valid = StratifiedKFold(n_splits=5)
+
+        scoring = { 'auc_score': 'roc_auc',
+                    'accuracy': 'accuracy',
+                    'scores_p_1': 'precision',
+                    'scores_r_1': 'recall',
+                    'scores_f_1_1': 'f1',
+                    'scores_p_0': make_scorer(Model.precision_0),
+                    'scores_r_0': make_scorer(Model.recall_0),
+                    'scores_f_1_0': make_scorer(Model.f1_0),
+                    'mcc': make_scorer(matthews_corrcoef),
+                    'precision_micro': 'precision_micro',
+                    'precision_macro': 'precision_macro', 
+                    'recall_macro': 'recall_macro',
+                    'recall_micro': 'recall_micro', 
+                    'f1_macro': 'f1_macro', 
+                    'f1_micro': 'f1_micro'
+                    }
+
+        rfc = RandomForestClassifier()
+        abc = AdaBoostClassifier()
+        gbc = GradientBoostingClassifier()
+        mlp = MLPClassifier()
+        etc = ExtraTreeClassifier()
+        svc = SVC(probability=True)
         estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
 
-        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
-        logger.info(f'len(X_train) = {len(X_train)}')
-        logger.info(f'len(X_test) = {len(X_test)}')
+        params = {
+            'rfc__max_features': ['sqrt'], 'rfc__min_samples_split': [10], 'rfc__n_estimators': [860],
+            'abc__n_estimators': [60],
+            'gbc__max_features': [None], 'gbc__min_samples_split': [7], 'gbc__n_estimators': [100],
+            'mlp__activation': ['logistic'], 'mlp__learning_rate': ['adaptive'], 'mlp__max_iter': [1000], 'mlp__solver': ['adam'],
+            'etc__max_features': [None], 'etc__min_samples_split': [9], 'etc__splitter': ['random'],
+            'svc__C': [500], 'svc__gamma': [0.0001], 'svc__kernel': ['rbf']
+        }
 
-        ensemble = VotingClassifier(estimators, voting = 'hard', verbose = True)
+        eclf = VotingClassifier(estimators, voting = 'soft', verbose = True)
 
-        ensemble.fit(X_train, y_train)
-        #score = ensemble.score(X_test, y_test)
-        predictions = ensemble.predict(X_test)
-        logger.info(f'{classification_report(y_test, predictions)}')
+        grid_search = GridSearchCV(estimator=eclf,
+                                   param_grid=params,
+                                   scoring=scoring, 
+                                   cv=cross_valid,
+                                   refit='auc_score',
+                                   n_jobs=40, 
+                                   verbose=2)
+
+    
+        grid_search.fit(x, y)
+
+        logger.info(f"Resultados obtidos em todos os treinamentos: {grid_search.cv_results_}")
+
+        results_dataframe = pd.DataFrame(data=grid_search.cv_results_)
+
+        results_dataframe.to_csv(path_csv_result)
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para executar o GridSearchCV: {time_end - time_init} segundos")
+        logger.info("FInalizado GridSearchCV para o modelo")
         
-        return ensemble
+        return grid_search
 
     def grid_search(self, x, y, path_csv_result=None, model_param="SVC"):
         """Define o gridsearch para ser utilizado para valorar os melhores parâmetros para o modelo passado como parâmetro

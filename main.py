@@ -151,7 +151,26 @@ if __name__=='__main__':
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
     if cli.get_arg_from_cli('ensemble'):
-        model = model.ensemble(x, y, cli.get_arg_from_cli('result_path'))
+        grid_search = model.grid_search_ensemble(x, y, cli.get_arg_from_cli('result_path'))
+
+        results = grid_search.cv_results_
+        bi = grid_search.best_index_
+
+        logger.info(  f"Melhores resultados: \n \
+                        roc_auc: {results['mean_test_auc_score'][bi]},\n \
+                        accuracy: {results['mean_test_accuracy'][bi]},\n  \
+                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
+                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
+                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
+                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
+                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
+                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+                        precision_micro:{results['mean_test_precision_micro'][bi]},\n \
+                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
+                        mcc -:{results['mean_test_mcc'][bi]}")
+
+        logger.info(f"Melhor score: {grid_search.best_score_}")
+        logger.info(f"Melhores parâmetros: {grid_search.best_params_}")
 
         time_end = time()
 
