@@ -127,45 +127,39 @@ class Model():
         
         return grid_search    
 
-    def grid_search_ensemble(self, x, y, path_csv_result=None):
+    def grid_search_ensemble(self, x, y, estimators, best_params_per_model, path_csv_result=None):
         logger.info(f"Iniciando GridSearchCV para o modelo ensemble")
 
         time_init = time()
 
-        rfc = RandomForestClassifier()
-        abc = AdaBoostClassifier()
-        gbc = GradientBoostingClassifier()
-        mlp = MLPClassifier()
-        etc = ExtraTreeClassifier()
-        svc = SVC(probability=True)
-        estimators = [('rfc', rfc), ('abc', abc), ('gbc', gbc), ('mlp', mlp), ('etc', etc), ('svc', svc)]
-
-        best_params_per_model = {
-            'rfc' : {
-                'rfc__max_features': ['sqrt'], 'rfc__min_samples_split': [10], 'rfc__n_estimators': [860]
-            },
-            'abc': {
-                'abc__n_estimators': [60]
-            },
-            'gbc' : {
-                'gbc__max_features': [None], 'gbc__min_samples_split': [7], 'gbc__n_estimators': [100]
-            },
-            'mlp' : {
-                'mlp__activation': ['logistic'], 'mlp__learning_rate': ['adaptive'], 'mlp__max_iter': [1000], 'mlp__solver': ['adam']
-            },
-            'etc' : {
-                'etc__max_features': [None], 'etc__min_samples_split': [9], 'etc__splitter': ['random']
-            },
-            'svc' : {
-                'svc__C': [500], 'svc__gamma': [0.0001], 'svc__kernel': ['rbf']
-            }
-        }
+        # best_params_per_model = {
+        #     'rfc' : {
+        #         'rfc__max_features': ['sqrt'], 'rfc__min_samples_split': [10], 'rfc__n_estimators': [860]
+        #     },
+        #     'abc': {
+        #         'abc__n_estimators': [60]
+        #     },
+        #     'gbc' : {
+        #         'gbc__max_features': [None], 'gbc__min_samples_split': [7], 'gbc__n_estimators': [100]
+        #     },
+        #     'mlp' : {
+        #         'mlp__activation': ['logistic'], 'mlp__learning_rate': ['adaptive'], 'mlp__max_iter': [1000], 'mlp__solver': ['adam']
+        #     },
+        #     'etc' : {
+        #         'etc__max_features': [None], 'etc__min_samples_split': [9], 'etc__splitter': ['random']
+        #     },
+        #     'svc' : {
+        #         'svc__C': [500], 'svc__gamma': [0.0001], 'svc__kernel': ['rbf']
+        #     }
+        # }
 
         estimators_combinations = list()
+        logger.info(f'Gerando lista de combinações de classificadores')
         for n in range(2, len(estimators) + 1):
             estimators_combinations += list(combinations(estimators, n))
-        # for combination in estimators_combinations:
-        #     logger.info(f'combination : {combination}')
+        
+        for combination in estimators_combinations:
+            logger.info(f'combination : {combination}')
 
         results = dict()
         for combination in estimators_combinations:
@@ -312,12 +306,11 @@ class Model():
                 logger.info(f'Melhores parametros para o modelo {model}: {grid_search.best_params_}')
                 best_params = grid_search.best_params_
 
-                best_params_per_estimator['model'] = dict()
+                best_params_per_estimator[model] = dict()
 
                 for param, best_value in best_params.items():
                     key_name = f'{model}__{param}'
-                    best_params_per_estimator['model'][key_name] = [best_value]
-                break
+                    best_params_per_estimator[model][key_name] = [best_value]
 
             with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'w') as fp:
                 logger.info(f'Salvando os melhores parametros em arquivo...')
@@ -328,8 +321,31 @@ class Model():
                 best_params_per_estimator = json.load(fp)
             
         logger.info(f'best_params_per_estimator = {best_params_per_estimator}')
-        exit(0)
+
         estimators = []
+        for model in best_params_per_estimator.keys():
+            if model == 'rfc':
+                logger.info('Ensemble testará RandomForestClassifier')
+                estimators.append(('rfc', RandomForestClassifier()))
+            elif model == 'abc':
+                logger.info('Ensemble testará AdaBoostClassifier')
+                estimators.append(('abc', AdaBoostClassifier()))
+            elif model == 'gbc':
+                logger.info('Ensemble testará GradientBoostingClassifier')
+                estimators.append(('gbc', GradientBoostingClassifier()))
+            elif model == 'mlp':
+                logger.info('Ensemble testará MLPClassifier')
+                estimators.append(('mlp', MLPClassifier()))
+            elif model == 'etc':
+                logger.info('Ensemble testará ExtraTreeClassifier')
+                estimators.append(('etc', ExtraTreeClassifier()))
+            elif model == 'svc':
+                logger.info('Ensemble testará SVC')
+                estimators.append(('svc', SVC(probability=True)))
+            else:
+                logger.warn("Modelo desconhecido")
+
+        logger.info(f'Estimators a serem testados: {estimators}')
 
         return estimators, best_params_per_estimator
 

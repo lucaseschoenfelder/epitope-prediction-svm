@@ -151,3 +151,13 @@ if __name__=='__main__':
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
     estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('result_path'))
+
+    best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
+
+    logger.info(f"Melhor score: {best_ensemble_model[1]}")
+    logger.info(f"Melhor combinação: {best_ensemble_model[0]}")
+
+    time_end = time()
+
+    logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+    logger.info("Aplicação finalizada")
