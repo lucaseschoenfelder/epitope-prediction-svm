@@ -34,11 +34,11 @@ class Cli():
         ap.add_argument("-pv", "--protvec-feature", action='store_true',
             help="Quando esse parâmetro está selecionado será utilizada a feature ProtVec")
 
-        ap.add_argument("-m", "--model", required=True,
-            help="Algoritmo a ser usado para treinar o modelo. SVC para SVM, RF para random forest ")
+        # ap.add_argument("-m", "--model", required=True,
+        #     help="Algoritmo a ser usado para treinar o modelo. SVC para SVM, RF para random forest ")
 
-        ap.add_argument("-e", "--ensemble", action='store_true',
-            help="Rodar ensemble com melhores parâmetros")
+        # ap.add_argument("-e", "--ensemble", action='store_true',
+        #     help="Rodar ensemble com melhores parâmetros")
 
         args = vars(ap.parse_args())
 

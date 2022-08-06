@@ -1,3 +1,4 @@
+from genericpath import exists
 from numpy import ndarray
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
@@ -10,6 +11,8 @@ from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
 from itertools import combinations
 from time import time
+import json
+import os.path
 
 import numpy as np
 import pandas as pd
@@ -187,7 +190,6 @@ class Model():
             logger.info(f'{key} : {val}')
         
         return (max(results, key=results.get), results[max(results, key=results.get)])
-        
 
     def grid_search(self, x, y, path_csv_result=None, model_param="SVC"):
         """Define o gridsearch para ser utilizado para valorar os melhores parâmetros para o modelo passado como parâmetro
@@ -201,25 +203,25 @@ class Model():
 
         cross_valid = StratifiedKFold(n_splits=5)
 
-        scoring = { 'auc_score': 'roc_auc',
-                    'accuracy': 'accuracy',
-                    'scores_p_1': 'precision',
-                    'scores_r_1': 'recall',
-                    'scores_f_1_1': 'f1',
-                    'scores_p_0': make_scorer(Model.precision_0),
-                    'scores_r_0': make_scorer(Model.recall_0),
-                    'scores_f_1_0': make_scorer(Model.f1_0),
-                    'mcc': make_scorer(matthews_corrcoef),
-                    'precision_micro': 'precision_micro',
-                    'precision_macro': 'precision_macro', 
-                    'recall_macro': 'recall_macro',
-                    'recall_micro': 'recall_micro', 
-                    'f1_macro': 'f1_macro', 
-                    'f1_micro': 'f1_micro'
-                    }
+        scoring = { 
+            'auc_score': 'roc_auc',
+            'accuracy': 'accuracy',
+            'scores_p_1': 'precision',
+            'scores_r_1': 'recall',
+            'scores_f_1_1': 'f1',
+            'scores_p_0': make_scorer(Model.precision_0),
+            'scores_r_0': make_scorer(Model.recall_0),
+            'scores_f_1_0': make_scorer(Model.f1_0),
+            'mcc': make_scorer(matthews_corrcoef),
+            'precision_micro': 'precision_micro',
+            'precision_macro': 'precision_macro', 
+            'recall_macro': 'recall_macro',
+            'recall_micro': 'recall_micro', 
+            'f1_macro': 'f1_macro', 
+            'f1_micro': 'f1_micro'
+        }
 
-
-        if model_param == "RF":
+        if model_param == "rfc":
             logger.info(f'Usando modelo Random Forest')
             model = RandomForestClassifier()
             params = { 
@@ -227,13 +229,13 @@ class Model():
                 'max_features': ['sqrt', None],
                 'min_samples_split' : [i for i in range(2, 11, 1)]
             }
-        elif model_param == "AB":
+        elif model_param == "abc":
             logger.info(f'Usando modelo AdaBoost')
             model = AdaBoostClassifier()
             params = {
                 'n_estimators' : [i for i in range(20, 1001, 20)]
             }
-        elif model_param == "GB":
+        elif model_param == "gbc":
             logger.info(f'Usando modelo GradientBoost')
             model = GradientBoostingClassifier()
             params = {
@@ -241,7 +243,7 @@ class Model():
                 'max_features': ['sqrt', None],
                 'min_samples_split' : [i for i in range(2, 11, 1)]
             }
-        elif model_param == "MLP":
+        elif model_param == "mlp":
             logger.info(f'Usando modelo Multilayer Perceptron')
             model = MLPClassifier()
             params = {
@@ -250,7 +252,7 @@ class Model():
                 'solver' : ['lbfgs', 'adam'],
                 'learning_rate': ['constant','adaptive']
             }
-        elif model_param == "ERT":
+        elif model_param == "ert":
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreeClassifier()
             params = { 
@@ -289,9 +291,47 @@ class Model():
         time_end = time()
 
         logger.debug(f"Tempo gasto em segundos para executar o GridSearchCV: {time_end - time_init} segundos")
-        logger.info("FInalizado GridSearchCV para o modelo")
+        logger.info("FInalizado GridSearchCV para o modelo {model_param}")
         
         return grid_search
+
+    def grid_search_models(self, x, y, path_csv_result=None):
+
+        models_to_evaluate = [
+            'abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc'
+        ]
+
+        path_to_params_json = "/../model_params_dict/params.json"
+
+        if not exists(f'{os.path.dirname(__file__)}{path_to_params_json}'):
+            logger.info("Arquivo com os melhores parametros não encontrado. Iniciando busca pelos melhores parametros de cada modelo")
+            best_params_per_estimator = dict()
+            for model in models_to_evaluate:
+
+                grid_search = self.grid_search(x, y, path_csv_result, model)
+                logger.info(f'Melhores parametros para o modelo {model}: {grid_search.best_params_}')
+                best_params = grid_search.best_params_
+
+                best_params_per_estimator['model'] = dict()
+
+                for param, best_value in best_params.items():
+                    key_name = f'{model}__{param}'
+                    best_params_per_estimator['model'][key_name] = [best_value]
+                break
+
+            with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'w') as fp:
+                logger.info(f'Salvando os melhores parametros em arquivo...')
+                json.dump(best_params_per_estimator, fp, indent=4)     
+        else:
+            logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
+            with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:
+                best_params_per_estimator = json.load(fp)
+            
+        logger.info(f'best_params_per_estimator = {best_params_per_estimator}')
+        exit(0)
+        estimators = []
+
+        return estimators, best_params_per_estimator
 
     def prepare_x_and_y(self, features: ndarray, target: list):
         """Método que irá transformar as features e os rótulos em objetos que podem ser interpretados pelo GridSearchCV"""
