@@ -1,0 +1,224 @@
+SVC:
+2022-08-05 15:29:52,508 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 81.84894371032715 segundos
+2022-08-05 15:29:52,509 - grid_search - INFO - FInalizado GridSearchCV para o modelo
+2022-08-05 15:29:52,509 - <module> - INFO - Melhores resultados: 
+                     roc_auc: 0.8989750732532705,
+                     accuracy: 0.8132046724225497,
+                      precision +:0.8177425347479031,
+                     recall +:0.8062172423754694,
+                     f1 +:0.811892155578002,
+                     precision -:0.8089298234065836,
+                     recall -:0.8201925219759811,
+                     f1 -:0.8144780836740688,
+                     precision_micro:0.8132046724225497,
+                     f1 -:0.8133361790772433,
+                     mcc -:0.6265410289936021
+2022-08-05 15:29:52,509 - <module> - INFO - Melhor score: 0.8989750732532705
+2022-08-05 15:29:52,509 - <module> - INFO - Melhores parâmetros: {'C': 500, 'gamma': 0.0001, 'kernel': 'rbf'}
+2022-08-05 15:29:52,509 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 82.46748471260071 segundos
+2022-08-05 15:29:52,509 - <module> - INFO - Aplicação finalizada
+
+RANDOM FOREST:
+2022-08-04 12:36:53,279 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 5917.31564116478 segundos
+2022-08-04 12:36:53,279 - grid_search - INFO - FInalizado GridSearchCV para o modelo
+2022-08-04 12:36:53,279 - <module> - INFO - Melhores resultados: 
+                     roc_auc: 0.8949891667698402,
+                     accuracy: 0.8114779075672931,
+                      precision +:0.8129197892157236,
+                     recall +:0.8092654038215509,
+                     f1 +:0.8110580812747651,
+                     precision -:0.810138820063951,
+                     recall -:0.8136923775329123,
+                     f1 -:0.8118821607653501,
+                     precision_micro:0.8114779075672931,
+                     f1 -:0.8115293046398374,
+                     mcc -:0.6230081892521879
+2022-08-04 12:36:53,279 - <module> - INFO - Melhor score: 0.8949891667698402
+2022-08-04 12:36:53,279 - <module> - INFO - Melhores parâmetros: {'max_features': 'sqrt', 'min_samples_split': 10, 'n_estimators': 860}
+2022-08-04 12:36:53,279 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 5918.4557201862335 segundos
+2022-08-04 12:36:53,279 - <module> - INFO - Aplicação finalizada
+
+
+ADABOOST:
+2022-08-04 13:00:48,277 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 157.7779359817505 segundos
+2022-08-04 13:00:48,277 - grid_search - INFO - FInalizado GridSearchCV para o modelo
+2022-08-04 13:00:48,277 - <module> - INFO - Melhores resultados: 
+                     roc_auc: 0.89458998803186,
+                     accuracy: 0.8102590147282885,
+                      precision +:0.8112189918091086,
+                     recall +:0.8090625644835129,
+                     f1 +:0.8100449393300841,
+                     precision -:0.8095864723659508,
+                     recall -:0.8114609384672526,
+                     f1 -:0.8104321565397928,
+                     precision_micro:0.8102590147282885,
+                     f1 -:0.8104027320875298,
+                     mcc -:0.62066443479683
+2022-08-04 13:00:48,277 - <module> - INFO - Melhor score: 0.89458998803186
+2022-08-04 13:00:48,277 - <module> - INFO - Melhores parâmetros: {'n_estimators': 60}
+2022-08-04 13:00:48,278 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 158.5093162059784 segundos
+2022-08-04 13:00:48,278 - <module> - INFO - Aplicação finalizada
+
+GRADIENTBOOST:
+2022-08-04 13:44:49,953 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 2553.785442829132 segundos
+2022-08-04 13:44:49,953 - grid_search - INFO - FInalizado GridSearchCV para o modelo
+2022-08-04 13:44:49,953 - <module> - INFO - Melhores resultados: 
+                     roc_auc: 0.8990118030621932,
+                     accuracy: 0.8138141188420518,
+                      precision +:0.8142092579728238,
+                     recall +:0.8133267302216168,
+                     f1 +:0.8137352948504066,
+                     precision -:0.813519326848726,
+                     recall -:0.8143011018942676,
+                     f1 -:0.813877934972081,
+                     precision_micro:0.8138141188420518,
+                     f1 -:0.8138642924107751,
+                     mcc -:0.6276782058044343
+2022-08-04 13:44:49,953 - <module> - INFO - Melhor score: 0.8990118030621932
+2022-08-04 13:44:49,953 - <module> - INFO - Melhores parâmetros: {'max_features': None, 'min_samples_split': 7, 'n_estimators': 100}
+2022-08-04 13:44:49,953 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 2554.541074514389 segundos
+2022-08-04 13:44:49,954 - <module> - INFO - Aplicação finalizada
+
+EXTREMELY RANDOMIZED TREE:
+2022-08-05 10:26:40,539 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 6.424493789672852 segundos
+2022-08-05 10:26:40,539 - grid_search - INFO - FInalizado GridSearchCV para o modelo
+2022-08-05 10:26:40,539 - <module> - INFO - Melhores resultados: 
+                     roc_auc: 0.7931719697907639,
+                     accuracy: 0.7516505840528187,
+                      precision +:0.7606031273667825,
+                     recall +:0.7347162725434361,
+                     f1 +:0.7473987282045569,
+                     precision -:0.7433754497257932,
+                     recall -:0.7685854896620032,
+                     f1 -:0.7557384611658342,
+                     precision_micro:0.7516505840528187,
+                     f1 -:0.751989288546288,
+                     mcc -:0.5036399782568031
+2022-08-05 10:26:40,539 - <module> - INFO - Melhor score: 0.7931719697907639
+2022-08-05 10:26:40,539 - <module> - INFO - Melhores parâmetros: {'max_features': None, 'min_samples_split': 9, 'splitter': 'random'}
+2022-08-05 10:26:40,539 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 7.0627851486206055 segundos
+2022-08-05 10:26:40,539 - <module> - INFO - Aplicação finalizada
+
+MULTILAYER PERCEPTRON:
+2022-08-05 11:08:14,545 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 232.5803027153015 segundos
+2022-08-05 11:08:14,545 - grid_search - INFO - FInalizado GridSearchCV para o modelo
+2022-08-05 11:08:14,546 - <module> - INFO - Melhores resultados: 
+                     roc_auc: 0.8993079113532252,
+                     accuracy: 0.8131030980192993,
+                      precision +:0.8178968172258635,
+                     recall +:0.8060144030374314,
+                     f1 +:0.8116777001765021,
+                     precision -:0.8091195278715946,
+                     recall -:0.8201941727539103,
+                     f1 -:0.814402567103038,
+                     precision_micro:0.8131030980192993,
+                     f1 -:0.8135081725487291,
+                     mcc -:0.62661205880537
+2022-08-05 11:08:14,546 - <module> - INFO - Melhor score: 0.8993079113532252
+2022-08-05 11:08:14,547 - <module> - INFO - Melhores parâmetros: {'activation': 'logistic', 'learning_rate': 'adaptive', 'max_iter': 1000, 'solver': 'adam'}
+2022-08-05 11:08:14,547 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 233.22760438919067 segundos
+2022-08-05 11:08:14,547 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE HARD:
+2022-08-05 16:17:11,686 - <module> - INFO -               precision    recall  f1-score   support
+
+           0       0.80      0.83      0.81       956
+           1       0.83      0.80      0.82      1013
+
+    accuracy                           0.82      1969
+   macro avg       0.82      0.82      0.82      1969
+weighted avg       0.82      0.82      0.82      1969
+
+2022-08-05 16:17:11,687 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 20.3512065410614 segundos
+2022-08-05 16:17:11,687 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE SOFT:
+2022-08-05 16:20:14,526 - <module> - INFO -               precision    recall  f1-score   support
+
+           0       0.81      0.81      0.81       956
+           1       0.82      0.82      0.82      1013
+
+    accuracy                           0.82      1969
+   macro avg       0.82      0.82      0.82      1969
+weighted avg       0.82      0.82      0.82      1969
+
+2022-08-05 16:20:14,527 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 34.10836338996887 segundos
+2022-08-05 16:20:14,527 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_CV:
+2022-08-05 16:54:25,805 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8941294209896412,
+                         accuracy: 0.8078212290502794,
+                          precision +:0.8078864796668339,
+                         recall +:0.807846147497008,
+                         f1 +:0.8078377723200729,
+                         precision -:0.8078416560604215,
+                         recall -:0.807798274937064,
+                         f1 -:0.8077913206801176,
+                         precision_micro:0.8078212290502794,
+                         f1 -:0.8078640678636276,
+                         mcc -:0.6156862771591616
+2022-08-05 16:54:25,805 - <module> - INFO - Melhor score: 0.8941294209896412
+
+2022-08-05 18:48:47,276 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_abc : 0.8950402377120217
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_gbc : 0.8985918864264784
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_mlp : 0.8999731748586521
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_etc : 0.8743167842845943
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_svc : 0.89957182947464
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - abc_gbc : 0.8990458503569808
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - abc_mlp : 0.8906394701002848
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - abc_etc : 0.8460943625933721
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - abc_svc : 0.8990840245965911
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - gbc_mlp : 0.900455202013949
+2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - gbc_etc : 0.8747308200239363
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - gbc_svc : 0.9003313936692665
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - mlp_etc : 0.8759475465313029
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - mlp_svc : 0.8966443811646236
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - etc_svc : 0.8722638355825183
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_abc_gbc : 0.8983828566712064
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_abc_mlp : 0.8998786678222113
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_abc_etc : 0.8713509553877264
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_abc_svc : 0.899672526928315
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.9002787751227765
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.8861093227683547
+2022-08-05 18:48:47,278 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.9001219512195121
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8846729396227972
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.9002362675911023
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - rfc_etc_svc : 0.8857170566629524
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.900429614956048
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - abc_gbc_etc : 0.8764593908629441
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - abc_gbc_svc : 0.900293013082415
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - abc_mlp_etc : 0.8754044405926292
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - abc_mlp_svc : 0.8992544674177706
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - abc_etc_svc : 0.879457719450291
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8863540505963435
+2022-08-05 18:48:47,279 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.9002946638603442
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - gbc_etc_svc : 0.8871969790763897
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - mlp_etc_svc : 0.8852905369155215
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp : 0.9003020923610251
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_abc_gbc_etc : 0.8851685856960092
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_abc_gbc_svc : 0.9002410135776484
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_abc_mlp_etc : 0.8857094218150303
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_abc_mlp_svc : 0.8968253476951012
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_abc_etc_svc : 0.8871949156039785
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.8905428995914324
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.9004692336263463
+2022-08-05 18:48:47,280 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.8917622054393132
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.8903014733193018
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.8878317031901283
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.9002666006355495
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8884169039659939
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.8869472989146134
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.892790640089142
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc : 0.8917448722710578
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_svc : 0.9004785192521976
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - rfc_abc_gbc_etc_svc : 0.892413850026825
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - rfc_abc_mlp_etc_svc : 0.8917040155173124
+2022-08-05 18:48:47,281 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8947468119351246
+2022-08-05 18:48:47,282 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.8918876645619248
+2022-08-05 18:48:47,282 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc_svc : 0.8954438529156865
+2022-08-05 18:48:47,285 - <module> - INFO - Melhor score: 0.9004785192521976
+2022-08-05 18:48:47,286 - <module> - INFO - Melhor combinação: rfc_abc_gbc_mlp_svc
+2022-08-05 18:48:47,286 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 3668.9911017417908 segundos
+2022-08-05 18:48:47,286 - <module> - INFO - Aplicação finalizada
