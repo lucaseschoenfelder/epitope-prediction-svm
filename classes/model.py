@@ -158,6 +158,10 @@ class Model():
         for n in range(2, len(estimators) + 1):
             estimators_combinations += list(combinations(estimators, n))
         
+        if len(estimators_combinations) < 1:
+            logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
+            exit(-1)
+
         for combination in estimators_combinations:
             logger.info(f'combination : {combination}')
 
@@ -246,7 +250,7 @@ class Model():
                 'solver' : ['lbfgs', 'adam'],
                 'learning_rate': ['constant','adaptive']
             }
-        elif model_param == "ert":
+        elif model_param == "etc":
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreeClassifier()
             params = { 
