@@ -1,29 +1,29 @@
 {
+    "abc":{
+        "abc__n_estimators":[
+            20
+        ]
+    },
     "rfc":{
         "rfc__max_features":[
             "sqrt"
         ],
         "rfc__min_samples_split":[
-            10
+            8
         ],
         "rfc__n_estimators":[
-            860
-        ]
-    },
-    "abc":{
-        "abc__n_estimators":[
-            60
+            760
         ]
     },
     "gbc":{
         "gbc__max_features":[
-            1
+            2
         ],
         "gbc__min_samples_split":[
-            7
+            2
         ],
         "gbc__n_estimators":[
-            100
+            60
         ]
     },
     "mlp":{
@@ -34,7 +34,7 @@
             "adaptive"
         ],
         "mlp__max_iter":[
-            1000
+            500
         ],
         "mlp__solver":[
             "adam"
@@ -42,10 +42,10 @@
     },
     "etc":{
         "etc__max_features":[
-            1
+            2
         ],
         "etc__min_samples_split":[
-            9
+            10
         ],
         "etc__splitter":[
             "random"
