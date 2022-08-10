@@ -293,13 +293,13 @@ class Model():
         
         return grid_search
 
-    def grid_search_models(self, x, y, path_csv_result=None):
+    def grid_search_models(self, x, y, path_csv_result=None, path_to_params_file='params.json'):
 
         models_to_evaluate = [
             'abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc'
         ]
 
-        path_to_params_json = "/../model_params_dict/params.json"
+        path_to_params_json = f'/../model_params_dict/{path_to_params_file}'
 
         if not exists(f'{os.path.dirname(__file__)}{path_to_params_json}'):
             logger.info("Arquivo com os melhores parametros não encontrado. Iniciando busca pelos melhores parametros de cada modelo")

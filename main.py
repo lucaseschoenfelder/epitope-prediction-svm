@@ -127,18 +127,18 @@ if __name__=='__main__':
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aac')
     
-    # if cli.get_arg_from_cli('protvec_feature'):
+    if cli.get_arg_from_cli('protvec_feature'):
 
-    #     # Inicializa a classe AAC
-    #     protvec = ProtVec()
+        # Inicializa a classe AAC
+        protvec = ProtVec()
 
-    #     # Extração da feature aac para cada peptídeo do dataset
-    #     protvec_feature = protvec.extract_protvec_feature(dataset, "./protvec/sp_sequences_4mers_vec.bin")
+        # Extração da feature aac para cada peptídeo do dataset
+        protvec_feature = protvec.extract_protvec_feature(dataset, "./protvec/sp_sequences_4mers_vec.txt")
 
-    #     features = np.column_stack((features, protvec_feature))
+        features = np.column_stack((features, protvec_feature))
 
-    #     # Salvando a feature que será utilizada para treinar o modelo
-    #     feature_list.append('protvec')
+        # Salvando a feature que será utilizada para treinar o modelo
+        feature_list.append('protvec')
 
     if not len(feature_list):
         logger.error("Não foi selecionada nenhuma feature para treinamento do modelo. Programa será encerrado!")
@@ -150,7 +150,7 @@ if __name__=='__main__':
 
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
-    estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('result_path'))
+    estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('params'))
     best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
 
     logger.info(f"Melhor score: {best_ensemble_model[1]}")

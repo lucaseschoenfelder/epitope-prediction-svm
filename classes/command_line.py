@@ -34,6 +34,9 @@ class Cli():
         ap.add_argument("-pv", "--protvec-feature", action='store_true',
             help="Quando esse parâmetro está selecionado será utilizada a feature ProtVec")
 
+        ap.add_argument("-par", "--params", 
+            help="Nome do arquivo com os hiperparametros a serem usados")    
+
         # ap.add_argument("-m", "--model", required=True,
         #     help="Algoritmo a ser usado para treinar o modelo. SVC para SVM, RF para random forest ")
 
