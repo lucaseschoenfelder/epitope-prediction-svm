@@ -175,7 +175,7 @@ if __name__=='__main__':
     x, y = model.prepare_x_and_y(features, target)
 
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
-    exit(0)
+
     estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('params'))
     best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
 
