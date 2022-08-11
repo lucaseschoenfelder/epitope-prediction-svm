@@ -31,6 +31,12 @@ class Cli():
         ap.add_argument("-ac", "--aac-feature", action='store_true',
             help="Quando esse parâmetro está selecionado será utilizada a feature AAC (Amino Acid Composition)")
 
+        ap.add_argument("-dpc", "--dpc-feature", action='store_true',
+            help="Quando esse parâmetro está selecionado será utilizada a feature DPC (Dipeptide Composition)")    
+
+        ap.add_argument("-ctd", "--ctd-feature", action='store_true',
+            help="Quando esse parâmetro está selecionado será utilizada a feature CTD (Chain Transition Distribution)")
+
         ap.add_argument("-pv", "--protvec-feature", action='store_true',
             help="Quando esse parâmetro está selecionado será utilizada a feature ProtVec")
 

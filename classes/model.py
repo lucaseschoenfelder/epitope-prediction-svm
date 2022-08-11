@@ -108,7 +108,7 @@ class Model():
                                    param_grid=params,
                                    scoring=scoring, 
                                    cv=cross_valid,
-                                   refit='auc_score',
+                                   refit='mcc',
                                    n_jobs=40, 
                                    verbose=2)
 
@@ -273,7 +273,7 @@ class Model():
                                    param_grid=params,
                                    scoring=scoring, 
                                    cv=cross_valid,
-                                   refit='auc_score',
+                                   refit='mcc',
                                    n_jobs=40, 
                                    verbose=2)
 

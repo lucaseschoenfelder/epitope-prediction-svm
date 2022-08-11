@@ -304,6 +304,54 @@ class AAP():
 
         return np.array(feature_list)
 
+class DPC():
+    def __init__(self) -> None:
+        self.pypro = PyPro()
+    
+    def extract_dpc_feature(self, dataset: list):
+        logger.info("Iniciando o calculo para extração da feature DPC do dataset")
+
+        time_init = time()
+
+        feature_list = []
+
+        for pep in dataset:
+            self.pypro.ReadProteinSequence(pep)
+            dpc_feature = self.pypro.GetDPComp()
+            #print(list(dpc_feature.values()))
+            feature_list.append(list(dpc_feature.values()))
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para extrair a feature DPC do dataset: {time_end - time_init} segundos")
+        logger.info("Finalizado o cálculo da feature DPC para o dataset.")
+
+        return np.array(feature_list)
+
+class CTD():
+    def __init__(self) -> None:
+        self.pypro = PyPro()
+    
+    def extract_ctd_feature(self, dataset: list):
+        logger.info("Iniciando o calculo para extração da feature ctd do dataset")
+
+        time_init = time()
+
+        feature_list = []
+
+        for pep in dataset:
+            self.pypro.ReadProteinSequence(pep)
+            ctd_feature = self.pypro.GetCTD()
+            #print(list(ctd_feature.values()))
+            feature_list.append(list(ctd_feature.values()))
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para extrair a feature ctd do dataset: {time_end - time_init} segundos")
+        logger.info("Finalizado o cálculo da feature ctd para o dataset.")
+
+        return np.array(feature_list)        
+
 class AAC():
     """Classe Amino Acid Composition"""
 

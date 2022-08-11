@@ -1,4 +1,4 @@
-from classes.features import AAP, AAT, AAC, ProtVec
+from classes.features import AAP, AAT, AAC, DPC, CTD, ProtVec
 from classes.command_line import Cli
 from classes.file import File
 from classes.model import Model
@@ -126,6 +126,32 @@ if __name__=='__main__':
 
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aac')
+
+    if cli.get_arg_from_cli('dpc_feature'):
+
+        # Inicializa a classe AAC
+        dpc = DPC()
+
+        # Extração da feature aac para cada peptídeo do dataset
+        dpc_feature = dpc.extract_dpc_feature(dataset)
+
+        features = np.column_stack((features, dpc_feature))
+
+        # Salvando a feature que será utilizada para treinar o modelo
+        feature_list.append('dpc')
+    
+    if cli.get_arg_from_cli('ctd_feature'):
+
+        # Inicializa a classe DPC
+        ctd = CTD()
+
+        # Extração da feature aac para cada peptídeo do dataset
+        ctd_feature = ctd.extract_ctd_feature(dataset)
+
+        features = np.column_stack((features, ctd_feature))
+
+        # Salvando a feature que será utilizada para treinar o modelo
+        feature_list.append('ctd')
     
     if cli.get_arg_from_cli('protvec_feature'):
 
@@ -149,7 +175,7 @@ if __name__=='__main__':
     x, y = model.prepare_x_and_y(features, target)
 
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
-
+    exit(0)
     estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('params'))
     best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
 
