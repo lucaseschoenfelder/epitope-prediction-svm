@@ -204,8 +204,7 @@ if __name__=='__main__':
 
         logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
         logger.info("Aplicação finalizada")        
-
-    else:
+    elif cli.get_arg_from_cli('params'):
         estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('params'), cli.get_arg_from_cli('result_path'))
         best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
 
@@ -216,3 +215,30 @@ if __name__=='__main__':
 
         logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
         logger.info("Aplicação finalizada")
+    else:
+        logger.info(f'Rodando ensemble com todos os parametros default')
+        gridsearch_model = model.cross_validate_ensemble(None, None, x, y, cli.get_arg_from_cli('result_path'))
+
+        results = gridsearch_model.cv_results_
+        bi = gridsearch_model.best_index_
+
+        logger.info(  f"Resultados encontrados: \n \
+                        roc_auc: {results['mean_test_auc_score'][bi]},\n \
+                        accuracy: {results['mean_test_accuracy'][bi]},\n  \
+                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
+                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
+                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
+                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
+                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
+                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+                        precision_micro:{results['mean_test_precision_micro'][bi]},\n \
+                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
+                        mcc -:{results['mean_test_mcc'][bi]}")
+
+        logger.info(f"Score obtido: {gridsearch_model.best_score_}")
+        # logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+        logger.info("Aplicação finalizada") 

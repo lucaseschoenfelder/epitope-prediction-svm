@@ -120,7 +120,7 @@ MULTILAYER PERCEPTRON:
 2022-08-05 11:08:14,547 - <module> - INFO - Aplicação finalizada
 
 
-ENSEMBLE_5_FOLD_CV_DSCVST_ALL_FEATURES:
+ENSEMBLE_5_FOLD_CV_DSCVST_AAT_AAP_AAC:
 2022-08-05 18:48:47,276 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
 2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_abc : 0.8950402377120217
 2022-08-05 18:48:47,277 - grid_search_ensemble - INFO - rfc_gbc : 0.8985918864264784
@@ -311,6 +311,199 @@ ENSEMBLE_5_FOLD_CV_DCSVST_AAT:
 2022-08-09 14:56:02,877 - <module> - INFO - Melhor combinação: mlp_svc
 2022-08-09 14:56:02,877 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 4213.988416671753 segundos
 2022-08-09 14:56:02,877 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_DCVST_AAP_AAC_AAT_DPC:
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - rfc_abc : 0.8735972514547481
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - rfc_gbc : 0.8777636086005529
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - rfc_mlp : 0.868365729850192
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - rfc_etc : 0.7576022450579835
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - rfc_svc : 0.8931994139738351
+2022-08-12 17:19:44,532 - grid_search_ensemble - INFO - abc_gbc : 0.8809541496430194
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - abc_mlp : 0.8633667615863976
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - abc_etc : 0.6842869671082499
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - abc_svc : 0.8926558953406794
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - gbc_mlp : 0.8738130906689777
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - gbc_etc : 0.7670834880937641
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - gbc_svc : 0.8940914530972721
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - mlp_etc : 0.7817079361148941
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - mlp_svc : 0.8808980231934299
+2022-08-12 17:19:44,533 - grid_search_ensemble - INFO - etc_svc : 0.7967346580826213
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_abc_gbc : 0.878487268375222
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_abc_mlp : 0.8693817836655524
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_abc_etc : 0.7558233254921382
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_abc_svc : 0.8934567289835333
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.8765870166315877
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.8232966035244109
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.8925523090256282
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8294311006561841
+2022-08-12 17:19:44,534 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.8841292146424002
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - rfc_etc_svc : 0.8407063266064133
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.8709073088192809
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - abc_gbc_etc : 0.7775108332301597
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - abc_gbc_svc : 0.8951025545788452
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - abc_mlp_etc : 0.8021775824357228
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - abc_mlp_svc : 0.8809628162271471
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - abc_etc_svc : 0.8057989765176838
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8300563327968306
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.885989641368495
+2022-08-12 17:19:44,535 - grid_search_ensemble - INFO - gbc_etc_svc : 0.8486447113202097
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - mlp_etc_svc : 0.8435332838099955
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp : 0.8766842061821633
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - rfc_abc_gbc_etc : 0.8254661384177295
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - rfc_abc_gbc_svc : 0.8922956130576534
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - rfc_abc_mlp_etc : 0.8266107465643184
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - rfc_abc_mlp_svc : 0.8835875531344145
+2022-08-12 17:19:44,536 - grid_search_ensemble - INFO - rfc_abc_etc_svc : 0.8430215426519746
+2022-08-12 17:19:44,541 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.8488770583137303
+2022-08-12 17:19:44,541 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.8861000371425034
+2022-08-12 17:19:44,541 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.8618346333209524
+2022-08-12 17:19:44,541 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.8597670339647558
+2022-08-12 17:19:44,542 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.8389635178077668
+2022-08-12 17:19:44,542 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.8857422310263712
+2022-08-12 17:19:44,542 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8536172671371384
+2022-08-12 17:19:44,542 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.8452168709504354
+2022-08-12 17:19:44,543 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.8674536750443647
+2022-08-12 17:19:44,543 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc : 0.8546498287317899
+2022-08-12 17:19:44,543 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_svc : 0.8872908670711073
+2022-08-12 17:19:44,543 - grid_search_ensemble - INFO - rfc_abc_gbc_etc_svc : 0.8613548759853081
+2022-08-12 17:19:44,544 - grid_search_ensemble - INFO - rfc_abc_mlp_etc_svc : 0.8596038132970161
+2022-08-12 17:19:44,544 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8705315504931699
+2022-08-12 17:19:44,544 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.8626032767941894
+2022-08-12 17:19:44,544 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc_svc : 0.8688271222813752
+2022-08-12 17:19:44,550 - <module> - INFO - Melhor score: 0.8951025545788452
+2022-08-12 17:19:44,550 - <module> - INFO - Melhor combinação: abc_gbc_svc
+2022-08-12 17:19:44,550 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 27423.107531785965 segundos
+2022-08-12 17:19:44,551 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_DCSV_AAP_AAC_AAT_CTD: 
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - rfc_abc : 0.8730351615698897
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - rfc_gbc : 0.8810069745367505
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - rfc_mlp : 0.8688223762948291
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - rfc_etc : 0.748986216004292
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - rfc_svc : 0.893251619825843
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - abc_gbc : 0.8787875036110767
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - abc_mlp : 0.8588489950889355
+2022-08-17 04:33:21,363 - grid_search_ensemble - INFO - abc_etc : 0.6786967108249764
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - abc_svc : 0.8926587842020552
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - gbc_mlp : 0.8754917254756304
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - gbc_etc : 0.7602036647270026
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - gbc_svc : 0.8940452313152575
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - mlp_etc : 0.7988727250216665
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - mlp_svc : 0.8828845280838596
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - etc_svc : 0.7974426354669639
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_abc_gbc : 0.879116833807932
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_abc_mlp : 0.8709461021006148
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_abc_etc : 0.7635460773389461
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_abc_svc : 0.8935275060872436
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.8769266641904998
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.8181505096776857
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.8926984028723537
+2022-08-17 04:33:21,364 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8362504642812926
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.883229127976559
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - rfc_etc_svc : 0.8438194874334529
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.8757661673063432
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - abc_gbc_etc : 0.7701353637901861
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - abc_gbc_svc : 0.8950569518385538
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - abc_mlp_etc : 0.8004073294540051
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - abc_mlp_svc : 0.8811010688787091
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - abc_etc_svc : 0.7955920102348231
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8369376005942801
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.8852783624282944
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - gbc_etc_svc : 0.8524658495315919
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - mlp_etc_svc : 0.8461136560604186
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp : 0.878060954975032
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - rfc_abc_gbc_etc : 0.8229555115348107
+2022-08-17 04:33:21,365 - grid_search_ensemble - INFO - rfc_abc_gbc_svc : 0.891604349799843
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_abc_mlp_etc : 0.8317438405348521
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_abc_mlp_svc : 0.8845974165325409
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_abc_etc_svc : 0.8498636044736081
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.8554027898147002
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.8869452354422022
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.863149684288721
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.8599106516445876
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.8382505880896373
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.8860486566794601
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8535149189055342
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.8496168131732078
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.8606151211258306
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc : 0.8580817960463868
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_svc : 0.8871666460319426
+2022-08-17 04:33:21,366 - grid_search_ensemble - INFO - rfc_abc_gbc_etc_svc : 0.8626874664685733
+2022-08-17 04:33:21,367 - grid_search_ensemble - INFO - rfc_abc_mlp_etc_svc : 0.8615168585696009
+2022-08-17 04:33:21,367 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8697059551813793
+2022-08-17 04:33:21,367 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.8613746853204572
+2022-08-17 04:33:21,367 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc_svc : 0.8671431224464529
+2022-08-17 04:33:21,370 - <module> - INFO - Melhor score: 0.8950569518385538
+2022-08-17 04:33:21,370 - <module> - INFO - Melhor combinação: abc_gbc_svc
+2022-08-17 04:33:21,370 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 10923.577889442444 segundos
+2022-08-17 04:33:21,370 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_DCVST_AAP_AAC_AAT_DPC_CTD:
+022-08-17 19:43:03,453 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - rfc_abc : 0.8591277702117124
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - rfc_gbc : 0.8599003342825308
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - rfc_mlp : 0.8603759646733524
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - rfc_etc : 0.7304271387891543
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - rfc_svc : 0.8643165779373531
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - abc_gbc : 0.8558295159093723
+2022-08-17 19:43:03,453 - grid_search_ensemble - INFO - abc_mlp : 0.8549137468532045
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - abc_etc : 0.6755208204366309
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - abc_svc : 0.8465500804754239
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - gbc_mlp : 0.8612929718129669
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - gbc_etc : 0.7363616854442656
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - gbc_svc : 0.8651650777929099
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - mlp_etc : 0.7833737773925963
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - mlp_svc : 0.8532324295324172
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - etc_svc : 0.7562021790268663
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_abc_gbc : 0.8607145804960588
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_abc_mlp : 0.8618170938054558
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_abc_etc : 0.7435283314762081
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_abc_svc : 0.8656326606413272
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.8627491642936734
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.7886851553794727
+2022-08-17 19:43:03,454 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.8702880607486279
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8149226197845735
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.860783913169081
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - rfc_etc_svc : 0.80231129544798
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.8618272048202715
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - abc_gbc_etc : 0.7615032396516858
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - abc_gbc_svc : 0.8672661054021708
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - abc_mlp_etc : 0.7905841690396599
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - abc_mlp_svc : 0.8528232429532417
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - abc_etc_svc : 0.7531637159011184
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8190171680904627
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.862343072923115
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - gbc_etc_svc : 0.8047290660723867
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - mlp_etc_svc : 0.8188097891131196
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp : 0.8635330774627542
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - rfc_abc_gbc_etc : 0.7828624489290579
+2022-08-17 19:43:03,455 - grid_search_ensemble - INFO - rfc_abc_gbc_svc : 0.8710862118773471
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_abc_mlp_etc : 0.8171208369444101
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_abc_mlp_svc : 0.8623494696875904
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_abc_etc_svc : 0.8057052948702076
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.8354376624984523
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.8639525814039868
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.8242371342495151
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.8362215756675333
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.815581280178284
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.8642773719615369
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8102028393380379
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.8245551153481078
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.8396820189014071
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc : 0.8427794973381205
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_svc : 0.8677448310016095
+2022-08-17 19:43:03,456 - grid_search_ensemble - INFO - rfc_abc_gbc_etc_svc : 0.8277307993892121
+2022-08-17 19:43:03,457 - grid_search_ensemble - INFO - rfc_abc_mlp_etc_svc : 0.8351378399570798
+2022-08-17 19:43:03,457 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8453115843341175
+2022-08-17 19:43:03,457 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.8420387107424373
+2022-08-17 19:43:03,457 - grid_search_ensemble - INFO - rfc_abc_gbc_mlp_etc_svc : 0.8463656060418472
+2022-08-17 19:43:03,460 - <module> - INFO - Melhor score: 0.8710862118773471
+2022-08-17 19:43:03,460 - <module> - INFO - Melhor combinação: rfc_abc_gbc_svc
+2022-08-17 19:43:03,460 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 30148.92872929573 segundos
+2022-08-17 19:43:03,460 - <module> - INFO - Aplicação finalizada
+
 -----------
 VIRAL
 {
@@ -379,7 +572,7 @@ VIRAL
     }
 }
 
-ENSEMBLE_5_FOLD_CV_VIRAL_ALL_FEATURES:
+ENSEMBLE_5_FOLD_CV_VIRAL_AAT_AAP_AAC:
 2022-08-08 03:06:31,152 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
 2022-08-08 03:06:31,153 - grid_search_ensemble - INFO - abc_rfc : 0.9055928931047059
 2022-08-08 03:06:31,153 - grid_search_ensemble - INFO - abc_gbc : 0.9097229665185388
@@ -569,3 +762,195 @@ ENSEMBLE_5_FOLD_CV_VIRAL_AAT
 2022-08-09 16:54:02,712 - <module> - INFO - Melhor combinação: abc_mlp
 2022-08-09 16:54:02,712 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 6247.167850732803 segundos
 2022-08-09 16:54:02,712 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_VIRAL_AAP_AAC_AAT_DPC:
+2022-08-15 21:08:17,497 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-15 21:08:17,497 - grid_search_ensemble - INFO - abc_rfc : 0.8883467250116766
+2022-08-15 21:08:17,497 - grid_search_ensemble - INFO - abc_gbc : 0.8352360602738
+2022-08-15 21:08:17,497 - grid_search_ensemble - INFO - abc_mlp : 0.8873017004947048
+2022-08-15 21:08:17,497 - grid_search_ensemble - INFO - abc_etc : 0.6190551585945118
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - abc_svc : 0.8822039432011171
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - rfc_gbc : 0.8668386106220881
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - rfc_mlp : 0.8832945739729103
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - rfc_etc : 0.7526392419502124
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - rfc_svc : 0.890545306993104
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - gbc_mlp : 0.8581168349295252
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - gbc_etc : 0.6384497992597413
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - gbc_svc : 0.8754198917175728
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - mlp_etc : 0.8037151353992394
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - mlp_svc : 0.8807437512966338
+2022-08-15 21:08:17,498 - grid_search_ensemble - INFO - etc_svc : 0.7915734777145154
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_rfc_gbc : 0.8772440515149492
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_rfc_mlp : 0.8870197210111783
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_rfc_etc : 0.7724029035561092
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_rfc_svc : 0.8927263763146656
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.8726631911300059
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_gbc_etc : 0.629140353607186
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_gbc_svc : 0.8815696661683393
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_mlp_etc : 0.8242791501076716
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_mlp_svc : 0.8843704600519224
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - abc_etc_svc : 0.8091709004996648
+2022-08-15 21:08:17,499 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.8768384099471065
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.7654666054600453
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.8876585728679978
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8484590411533398
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.8879581639801637
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - rfc_etc_svc : 0.8506143485120568
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8131986907387845
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.87651153112857
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - gbc_etc_svc : 0.8134834815070351
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - mlp_etc_svc : 0.8477062049444284
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp : 0.8812014510410531
+2022-08-15 21:08:17,500 - grid_search_ensemble - INFO - abc_rfc_gbc_etc : 0.7742921482572925
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_rfc_gbc_svc : 0.8893390047374036
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_rfc_mlp_etc : 0.8457344696199949
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_rfc_mlp_svc : 0.8896646578773131
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_rfc_etc_svc : 0.854506549726367
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.8182794160779784
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.8819284090213724
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8041082972754594
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.8526004237800773
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.846329311206274
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.885057508799061
+2022-08-15 21:08:17,501 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.8460089154440459
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.864595321828493
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.8454441668325222
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_etc : 0.8473157528272146
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_svc : 0.8870185718904631
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - abc_rfc_gbc_etc_svc : 0.8518123161831758
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - abc_rfc_mlp_etc_svc : 0.8663010693988114
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.850998717659494
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8644616884146185
+2022-08-15 21:08:17,502 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_etc_svc : 0.8658935997664168
+2022-08-15 21:08:17,504 - <module> - INFO - Melhor score: 0.8927263763146656
+2022-08-15 21:08:17,504 - <module> - INFO - Melhor combinação: abc_rfc_svc
+2022-08-15 21:08:17,504 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 28406.39657831192 segundos
+2022-08-15 21:08:17,504 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_VIRAL_AAP_AAC_AAT_CTD:
+2022-08-16 19:07:04,455 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-16 19:07:04,455 - grid_search_ensemble - INFO - abc_rfc : 0.8859098349469786
+2022-08-16 19:07:04,455 - grid_search_ensemble - INFO - abc_gbc : 0.8130020907740029
+2022-08-16 19:07:04,455 - grid_search_ensemble - INFO - abc_mlp : 0.8877531160228141
+2022-08-16 19:07:04,455 - grid_search_ensemble - INFO - abc_etc : 0.6192481047615213
+2022-08-16 19:07:04,455 - grid_search_ensemble - INFO - abc_svc : 0.904539398560325
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - rfc_gbc : 0.8512559475795918
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - rfc_mlp : 0.8815087895431315
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - rfc_etc : 0.7567695475947239
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - rfc_svc : 0.9019551950553298
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - gbc_mlp : 0.8554754683092571
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - gbc_etc : 0.6318403910372362
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - gbc_svc : 0.8907174815247109
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - mlp_etc : 0.8054485169162271
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - mlp_svc : 0.8963995960317265
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - etc_svc : 0.8211114182151265
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - abc_rfc_gbc : 0.8625835322771133
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - abc_rfc_mlp : 0.8857529831279057
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - abc_rfc_etc : 0.7688393025852815
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - abc_rfc_svc : 0.9034769903587507
+2022-08-16 19:07:04,456 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.863572474589286
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - abc_gbc_etc : 0.653002427869467
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - abc_gbc_svc : 0.8922126897244176
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - abc_mlp_etc : 0.8180949328691801
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - abc_mlp_svc : 0.898750515773207
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - abc_etc_svc : 0.8310167850859628
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.8741229032314676
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.7714409424178438
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.8926661076404958
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8465066936311751
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.8980607986293914
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - rfc_etc_svc : 0.8609577227478908
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8198775524039205
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.8904646555646323
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - gbc_etc_svc : 0.8361445935407514
+2022-08-16 19:07:04,457 - grid_search_ensemble - INFO - mlp_etc_svc : 0.8591327272810517
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp : 0.8774151477682304
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_rfc_gbc_etc : 0.7963593386029364
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_rfc_gbc_svc : 0.8932278804204288
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_rfc_mlp_etc : 0.8503742401898015
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_rfc_mlp_svc : 0.8996537132244595
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_rfc_etc_svc : 0.865618543885609
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.8302494424312872
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.8920965622020276
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8401920350977805
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.866316022256916
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.8450298818915079
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.8915433293142385
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.8577895142109021
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.8763355972876491
+2022-08-16 19:07:04,458 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.8677351299372461
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_etc : 0.8512988097822758
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_svc : 0.893905039660217
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - abc_rfc_gbc_etc_svc : 0.8637776709997963
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - abc_rfc_mlp_etc_svc : 0.8775699283122546
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.8666268630202323
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8736824950464624
+2022-08-16 19:07:04,459 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_etc_svc : 0.8759213610789794
+2022-08-16 19:07:04,462 - <module> - INFO - Melhor score: 0.904539398560325
+2022-08-16 19:07:04,462 - <module> - INFO - Melhor combinação: abc_svc
+2022-08-16 19:07:04,462 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 15243.036761760712 segundos
+2022-08-16 19:07:04,462 - <module> - INFO - Aplicação finalizada
+
+ENSEMBLE_5_FOLD_VIRAL_AAP_AAC_AAT_DPC_CTD:
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - abc_rfc : 0.8701290033297608
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - abc_gbc : 0.7885923674631993
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - abc_mlp : 0.8855857750839983
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - abc_etc : 0.5935120823395168
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - abc_svc : 0.8708926926378899
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - rfc_gbc : 0.8311942541461435
+2022-08-19 02:32:21,343 - grid_search_ensemble - INFO - rfc_mlp : 0.8720012666137962
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - rfc_etc : 0.7077332767845614
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - rfc_svc : 0.8783087253945203
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - gbc_mlp : 0.8523942333199848
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - gbc_etc : 0.5811759783136975
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - gbc_svc : 0.8625627169480499
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - mlp_etc : 0.8040920257862929
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - mlp_svc : 0.8733026769585288
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - etc_svc : 0.7766744939685991
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - abc_rfc_gbc : 0.8483772736940163
+2022-08-19 02:32:21,344 - grid_search_ensemble - INFO - abc_rfc_mlp : 0.8791599513044754
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_rfc_etc : 0.7253392279556066
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_rfc_svc : 0.8821505349581082
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_gbc_mlp : 0.8651284577380747
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_gbc_etc : 0.6284257174647992
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_gbc_svc : 0.8667865143921685
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_mlp_etc : 0.8133964425316338
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_mlp_svc : 0.8778508289158214
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - abc_etc_svc : 0.7893186962848862
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - rfc_gbc_mlp : 0.8636096492460628
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - rfc_gbc_etc : 0.7375221183928484
+2022-08-19 02:32:21,345 - grid_search_ensemble - INFO - rfc_gbc_svc : 0.8710098394032807
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - rfc_mlp_etc : 0.8337083419600113
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - rfc_mlp_svc : 0.8807019284164816
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - rfc_etc_svc : 0.8271521344920296
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - gbc_mlp_etc : 0.8058559334544313
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - gbc_mlp_svc : 0.8705262960242175
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - gbc_etc_svc : 0.7860058322508887
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - mlp_etc_svc : 0.839701752667192
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp : 0.8675076475036467
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - abc_rfc_gbc_etc : 0.7428966244145809
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - abc_rfc_gbc_svc : 0.8760972497973591
+2022-08-19 02:32:21,346 - grid_search_ensemble - INFO - abc_rfc_mlp_etc : 0.8377442637322767
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_rfc_mlp_svc : 0.8827712386792733
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_rfc_etc_svc : 0.8373990352307356
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_gbc_mlp_etc : 0.8168199037189655
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_gbc_mlp_svc : 0.8760230394612325
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_gbc_etc_svc : 0.8010615906563322
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_mlp_etc_svc : 0.8449533096911674
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc : 0.8382587136455131
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - rfc_gbc_mlp_svc : 0.8750486404448992
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - rfc_gbc_etc_svc : 0.8290219082150598
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - rfc_mlp_etc_svc : 0.8562246238724848
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - gbc_mlp_etc_svc : 0.8446262108250384
+2022-08-19 02:32:21,347 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_etc : 0.8419308999059725
+2022-08-19 02:32:21,348 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_svc : 0.877508250160307
+2022-08-19 02:32:21,348 - grid_search_ensemble - INFO - abc_rfc_gbc_etc_svc : 0.8404061233562559
+2022-08-19 02:32:21,348 - grid_search_ensemble - INFO - abc_rfc_mlp_etc_svc : 0.860024914080214
+2022-08-19 02:32:21,348 - grid_search_ensemble - INFO - abc_gbc_mlp_etc_svc : 0.8446422619657955
+2022-08-19 02:32:21,348 - grid_search_ensemble - INFO - rfc_gbc_mlp_etc_svc : 0.8577792790648863
+2022-08-19 02:32:21,348 - grid_search_ensemble - INFO - abc_rfc_gbc_mlp_etc_svc : 0.8595207080366849
+2022-08-19 02:32:21,356 - <module> - INFO - Melhor score: 0.8855857750839983
+2022-08-19 02:32:21,356 - <module> - INFO - Melhor combinação: abc_mlp
+2022-08-19 02:32:21,356 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 38446.22307372093 segundos
+2022-08-19 02:32:21,356 - <module> - INFO - Aplicação finalizada

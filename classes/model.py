@@ -102,28 +102,49 @@ class Model():
             'f1_micro': 'f1_micro'
         }
         
+        if estimators == None:
+            logger.info(f'Entrei no cross_validate_ensemble sem estimadores, vou utilizar todos disponíveis')
+            estimators = []
+            logger.info('Ensemble testará RandomForestClassifier')
+            estimators.append(('rfc', RandomForestClassifier()))
+            logger.info('Ensemble testará AdaBoostClassifier')
+            estimators.append(('abc', AdaBoostClassifier()))
+            logger.info('Ensemble testará GradientBoostingClassifier')
+            estimators.append(('gbc', GradientBoostingClassifier()))
+            logger.info('Ensemble testará MLPClassifier')
+            estimators.append(('mlp', MLPClassifier()))
+            logger.info('Ensemble testará ExtraTreeClassifier')
+            estimators.append(('etc', ExtraTreeClassifier()))
+            logger.info('Ensemble testará SVC')
+            estimators.append(('svc', SVC(probability=True)))
+            
+            params = dict()
+            for estimator in estimators:
+                for k, v in estimator[1].get_params().items():
+                    # logger.info(f'{estimator[0]}__{k} = {v}')
+                    params[f'{estimator[0]}__{k}'] = [v] 
+            logger.info(f'params: {params}')
+
         eclf = VotingClassifier(estimators, voting = 'soft', verbose = True)
 
-        if len(params)==0:
-            logger.info(f'Usando GridSearch com parametros default')
-            logger.info(f'Estimators={estimators}')
-            params = {'model__' + k: [v] for k, v in estimators[1].get_params().items()}
-            logger.info(f'params: {params}')
-            grid_search = GridSearchCV(estimator=eclf,
-                                    param_grid=params,
-                                    scoring=scoring, 
-                                    cv=cross_valid,
-                                    refit='auc_score',
-                                    n_jobs=40, 
-                                    verbose=2)
-        else:
-            grid_search = GridSearchCV(estimator=eclf,
-                                    param_grid=params,
-                                    scoring=scoring, 
-                                    cv=cross_valid,
-                                    refit='auc_score',
-                                    n_jobs=40, 
-                                    verbose=2)
+        # if params == None or len(params)==0:
+        #     logger.info(f'Usando GridSearch com parametros default')
+        #     logger.info(f'Estimators={estimators}')
+        #     grid_search = GridSearchCV(estimator=eclf,
+        #                             param_grid=params,
+        #                             scoring=scoring, 
+        #                             cv=cross_valid,
+        #                             refit='auc_score',
+        #                             n_jobs=40, 
+        #                             verbose=2)
+        # else:
+        grid_search = GridSearchCV(estimator=eclf,
+                                param_grid=params,
+                                scoring=scoring, 
+                                cv=cross_valid,
+                                refit='auc_score',
+                                n_jobs=40, 
+                                verbose=2)
 
         grid_search.fit(x, y)
 
@@ -180,18 +201,18 @@ class Model():
 
         results = dict()
         for combination in estimators_combinations:
-            if len(best_params_per_model) == 0:
-                logger.info(f'Entrei no except best_params_per_model')
-                params = dict()
-                path_to_ensemble_combination = f'{path_csv_result}_ensemble'
-                for model_tuple in combination:
-                    path_to_ensemble_combination += f'_{model_tuple[0]}'
-            else:
-                params = dict()
-                path_to_ensemble_combination = f'{path_csv_result}_ensemble'
-                for model_tuple in combination:
-                    params.update(best_params_per_model[model_tuple[0]])
-                    path_to_ensemble_combination += f'_{model_tuple[0]}'
+            # if len(best_params_per_model) == 0:
+            #     logger.info(f'Entrei no except best_params_per_model')
+            #     params = dict()
+            #     path_to_ensemble_combination = f'{path_csv_result}_ensemble'
+            #     for model_tuple in combination:
+            #         path_to_ensemble_combination += f'_{model_tuple[0]}'
+            # else:
+            params = dict()
+            path_to_ensemble_combination = f'{path_csv_result}_ensemble'
+            for model_tuple in combination:
+                params.update(best_params_per_model[model_tuple[0]])
+                path_to_ensemble_combination += f'_{model_tuple[0]}'
             
             cv_ensemble = self.cross_validate_ensemble(combination, params, x, y, path_to_ensemble_combination)
             
@@ -260,7 +281,11 @@ class Model():
             params = {
                 'n_estimators' : [i for i in range(20, 1001, 20)],
                 'max_features': ['sqrt', None],
-                'min_samples_split' : [i for i in range(2, 11, 1)]
+                'min_samples_split' : [i for i in range(2, 11, 1)],
+                'min_samples_leaf': [i for i in range(2, 11, 1)],
+                'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
+                'subsample' : [i for i in range(0.1, 1.1, 0.1)],
+                'max_depth': [i for i in range(3, 11, 1)]
             }
         elif model_param == "mlp":
             logger.info(f'Usando modelo Multilayer Perceptron')
