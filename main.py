@@ -77,7 +77,6 @@ if __name__=='__main__':
         aat_feature = aat.extract_aat_feature(dataset, aat_scale)
 
         features = np.column_stack((features, aat_feature))
-
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aat')
 
@@ -127,19 +126,6 @@ if __name__=='__main__':
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aac')
 
-    if cli.get_arg_from_cli('dpc_feature'):
-
-        # Inicializa a classe AAC
-        dpc = DPC()
-
-        # Extração da feature aac para cada peptídeo do dataset
-        dpc_feature = dpc.extract_dpc_feature(dataset)
-
-        features = np.column_stack((features, dpc_feature))
-
-        # Salvando a feature que será utilizada para treinar o modelo
-        feature_list.append('dpc')
-    
     if cli.get_arg_from_cli('ctd_feature'):
 
         # Inicializa a classe DPC
@@ -152,6 +138,20 @@ if __name__=='__main__':
 
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('ctd')
+
+    if cli.get_arg_from_cli('dpc_feature'):
+
+        # Inicializa a classe AAC
+        dpc = DPC()
+
+        # Extração da feature aac para cada peptídeo do dataset
+        dpc_feature = dpc.extract_dpc_feature(dataset)
+        
+        features = np.column_stack((features, dpc_feature))
+
+        # Salvando a feature que será utilizada para treinar o modelo
+        feature_list.append('dpc')
+    
     
     if cli.get_arg_from_cli('protvec_feature'):
 
@@ -176,13 +176,43 @@ if __name__=='__main__':
 
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
-    estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('params'))
-    best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
+    if cli.get_arg_from_cli('model'):
+        logger.info(f'Será testado apenas o modelo {cli.get_arg_from_cli("model")}')
+        #estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('params'), cli.get_arg_from_cli('result_path'), [cli.get_arg_from_cli('model')])    
+        gridsearch_model = model.grid_search(x, y, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('model'))
 
-    logger.info(f"Melhor score: {best_ensemble_model[1]}")
-    logger.info(f"Melhor combinação: {best_ensemble_model[0]}")
+        results = gridsearch_model.cv_results_
+        bi = gridsearch_model.best_index_
 
-    time_end = time()
+        logger.info(  f"Melhores resultados: \n \
+                        roc_auc: {results['mean_test_auc_score'][bi]},\n \
+                        accuracy: {results['mean_test_accuracy'][bi]},\n  \
+                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
+                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
+                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
+                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
+                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
+                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+                        precision_micro:{results['mean_test_precision_micro'][bi]},\n \
+                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
+                        mcc -:{results['mean_test_mcc'][bi]}")
 
-    logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
-    logger.info("Aplicação finalizada")
+        logger.info(f"Melhor score: {gridsearch_model.best_score_}")
+        logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+        logger.info("Aplicação finalizada")        
+
+    else:
+        estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('params'), cli.get_arg_from_cli('result_path'))
+        best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
+
+        logger.info(f"Melhor score: {best_ensemble_model[1]}")
+        logger.info(f"Melhor combinação: {best_ensemble_model[0]}")
+
+        time_end = time()
+
+        logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+        logger.info("Aplicação finalizada")

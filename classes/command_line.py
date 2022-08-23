@@ -43,8 +43,8 @@ class Cli():
         ap.add_argument("-par", "--params", 
             help="Nome do arquivo com os hiperparametros a serem usados")    
 
-        # ap.add_argument("-m", "--model", required=True,
-        #     help="Algoritmo a ser usado para treinar o modelo. SVC para SVM, RF para random forest ")
+        ap.add_argument("-m", "--model", default=None,
+            help="Algoritmo a ser usado para treinar o modelo. SVC para SVM, RF para random forest ")
 
         # ap.add_argument("-e", "--ensemble", action='store_true',
         #     help="Rodar ensemble com melhores parâmetros")

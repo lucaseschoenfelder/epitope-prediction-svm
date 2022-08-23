@@ -104,13 +104,26 @@ class Model():
         
         eclf = VotingClassifier(estimators, voting = 'soft', verbose = True)
 
-        grid_search = GridSearchCV(estimator=eclf,
-                                   param_grid=params,
-                                   scoring=scoring, 
-                                   cv=cross_valid,
-                                   refit='auc_score',
-                                   n_jobs=40, 
-                                   verbose=2)
+        if len(params)==0:
+            logger.info(f'Usando GridSearch com parametros default')
+            logger.info(f'Estimators={estimators}')
+            params = {'model__' + k: [v] for k, v in estimators[1].get_params().items()}
+            logger.info(f'params: {params}')
+            grid_search = GridSearchCV(estimator=eclf,
+                                    param_grid=params,
+                                    scoring=scoring, 
+                                    cv=cross_valid,
+                                    refit='auc_score',
+                                    n_jobs=40, 
+                                    verbose=2)
+        else:
+            grid_search = GridSearchCV(estimator=eclf,
+                                    param_grid=params,
+                                    scoring=scoring, 
+                                    cv=cross_valid,
+                                    refit='auc_score',
+                                    n_jobs=40, 
+                                    verbose=2)
 
         grid_search.fit(x, y)
 
@@ -167,11 +180,18 @@ class Model():
 
         results = dict()
         for combination in estimators_combinations:
-            params = dict()
-            path_to_ensemble_combination = f'{path_csv_result}_ensemble'
-            for model_tuple in combination:
-                params.update(best_params_per_model[model_tuple[0]])
-                path_to_ensemble_combination += f'_{model_tuple[0]}'
+            if len(best_params_per_model) == 0:
+                logger.info(f'Entrei no except best_params_per_model')
+                params = dict()
+                path_to_ensemble_combination = f'{path_csv_result}_ensemble'
+                for model_tuple in combination:
+                    path_to_ensemble_combination += f'_{model_tuple[0]}'
+            else:
+                params = dict()
+                path_to_ensemble_combination = f'{path_csv_result}_ensemble'
+                for model_tuple in combination:
+                    params.update(best_params_per_model[model_tuple[0]])
+                    path_to_ensemble_combination += f'_{model_tuple[0]}'
             
             cv_ensemble = self.cross_validate_ensemble(combination, params, x, y, path_to_ensemble_combination)
             
@@ -231,7 +251,8 @@ class Model():
             logger.info(f'Usando modelo AdaBoost')
             model = AdaBoostClassifier()
             params = {
-                'n_estimators' : [i for i in range(20, 1001, 20)]
+                'n_estimators' : [i for i in range(20, 1001, 20)],
+                'algorithm' : ['SAMME', 'SAMME.R']
             }
         elif model_param == "gbc":
             logger.info(f'Usando modelo GradientBoost')
@@ -293,14 +314,16 @@ class Model():
         
         return grid_search
 
-    def grid_search_models(self, x, y, path_csv_result=None, path_to_params_file='params.json'):
+    def grid_search_models(self, x, y, path_to_params_file, path_csv_result=None,
+                            models_to_evaluate=['abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc']):
 
-        models_to_evaluate = [
-            'abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc'
-        ]
+        logger.info(f'Entrei no grid_search_models com models_to_evaluate = {models_to_evaluate} e path_to_params_file={path_to_params_file}')
+        # models_to_evaluate = [
+        #     'abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc'
+        # ]
 
+        
         path_to_params_json = f'/../model_params_dict/{path_to_params_file}'
-
         if not exists(f'{os.path.dirname(__file__)}{path_to_params_json}'):
             logger.info("Arquivo com os melhores parametros não encontrado. Iniciando busca pelos melhores parametros de cada modelo")
             best_params_per_estimator = dict()
@@ -319,14 +342,15 @@ class Model():
             with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'w') as fp:
                 logger.info(f'Salvando os melhores parametros em arquivo...')
                 json.dump(best_params_per_estimator, fp, indent=4)     
-        else:
-            logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
-            with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:
-                best_params_per_estimator = json.load(fp)
+        # else:
+        #     logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
+        #     with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:
+        #         best_params_per_estimator = json.load(fp)
             
         logger.info(f'best_params_per_estimator = {best_params_per_estimator}')
 
         estimators = []
+        
         for model in best_params_per_estimator.keys():
             if model == 'rfc':
                 logger.info('Ensemble testará RandomForestClassifier')
@@ -351,7 +375,12 @@ class Model():
 
         logger.info(f'Estimators a serem testados: {estimators}')
 
-        return estimators, best_params_per_estimator
+        try:
+            best_params_per_estimator
+        except NameError:
+            return estimators, dict()
+        else:
+            return estimators, best_params_per_estimator
 
     def prepare_x_and_y(self, features: ndarray, target: list):
         """Método que irá transformar as features e os rótulos em objetos que podem ser interpretados pelo GridSearchCV"""
