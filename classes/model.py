@@ -273,7 +273,8 @@ class Model():
             model = AdaBoostClassifier()
             params = {
                 'n_estimators' : [i for i in range(20, 1001, 20)],
-                'algorithm' : ['SAMME', 'SAMME.R']
+                'algorithm' : ['SAMME', 'SAMME.R'],
+                'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01]
             }
         elif model_param == "gbc":
             logger.info(f'Usando modelo GradientBoost')
