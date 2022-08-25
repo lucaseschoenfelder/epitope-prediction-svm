@@ -12,8 +12,7 @@ from utils.setup_logger import logger
 from itertools import combinations
 from time import time
 import json
-import os.path
-
+import os.path  
 import numpy as np
 import pandas as pd
 
@@ -282,10 +281,8 @@ class Model():
             params = {
                 'n_estimators' : [i for i in range(20, 1001, 20)],
                 'max_features': ['sqrt', None],
-                'min_samples_split' : [i for i in range(2, 11, 1)],
-                'min_samples_leaf': [i for i in range(2, 11, 1)],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
-                'subsample' : [i for i in range(0.1, 1.1, 0.1)],
+                'subsample' : [i for i in np.arange(0.4, 1.1, 0.1)],
                 'max_depth': [i for i in range(3, 11, 1)]
             }
         elif model_param == "mlp":
