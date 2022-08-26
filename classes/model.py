@@ -279,7 +279,7 @@ class Model():
             logger.info(f'Usando modelo GradientBoost')
             model = GradientBoostingClassifier()
             params = {
-                'n_estimators' : [i for i in range(20, 1001, 20)],
+                'n_estimators' : [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024],
                 'max_features': ['sqrt', None],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
                 'subsample' : [i for i in np.arange(0.4, 1.1, 0.1)],
