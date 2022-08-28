@@ -282,7 +282,7 @@ class Model():
                 'n_estimators' : [1, 2, 5, 10, 20, 50, 100, 200, 500],
                 'max_features': ['sqrt', None],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
-                'subsample' : [i for i in np.arange(0.4, 1.1, 0.1)],
+                # 'subsample' : [i for i in np.arange(0.4, 1.1, 0.1)],
                 'max_depth': [i for i in range(3, 11, 1)]
             }
         elif model_param == "mlp":
