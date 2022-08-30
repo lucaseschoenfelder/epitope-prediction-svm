@@ -297,10 +297,11 @@ class Model():
         elif model_param == "etc":
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreeClassifier()
-            params = { 
+            params = {
+                'n_estimatores' : [100, 500, 1000, 2000, 5000], 
                 'max_features': ['sqrt', None],
                 'min_samples_split' : [i for i in range(2, 11, 1)],
-                'splitter' : ['random', 'best']
+                # 'splitter' : ['random', 'best']
             }
         else:
             logger.info(f'Usando modelo SVC')

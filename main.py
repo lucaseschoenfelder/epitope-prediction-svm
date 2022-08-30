@@ -173,7 +173,7 @@ if __name__=='__main__':
     logger.info(f"Features que estão sendo utilizadas para treinar o modelo: {feature_list}")
 
     x, y = model.prepare_x_and_y(features, target)
-
+    
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
     if cli.get_arg_from_cli('model'):
