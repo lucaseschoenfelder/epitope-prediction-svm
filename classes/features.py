@@ -1,5 +1,5 @@
 from utils.setup_logger import logger
-from external_libraries.sequencelist_representation import SequenceKmerEmbRep
+#from external_libraries.sequencelist_representation import SequenceKmerEmbRep
 from time import time
 
 from pydpi.pypro import PyPro

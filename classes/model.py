@@ -5,8 +5,8 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_sp
 from sklearn.metrics._scorer import make_scorer
 from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support, classification_report
 from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier
-from sklearn.tree import ExtraTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier, ExtraTreesClassifier
+# from sklearn.tree import ExtraTreesClassifier
 from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
 from itertools import combinations
@@ -118,8 +118,8 @@ class Model():
             estimators.append(('gbc', GradientBoostingClassifier()))
             logger.info('Ensemble testará MLPClassifier')
             estimators.append(('mlp', MLPClassifier()))
-            logger.info('Ensemble testará ExtraTreeClassifier')
-            estimators.append(('etc', ExtraTreeClassifier()))
+            logger.info('Ensemble testará ExtraTreesClassifier')
+            estimators.append(('etc', ExtraTreesClassifier()))
             logger.info('Ensemble testará SVC')
             estimators.append(('svc', SVC(probability=True)))
             
@@ -302,12 +302,12 @@ class Model():
             }
         elif model_param == "etc":
             logger.info(f'Usando modelo Extremely Randomized Tree')
-            model = ExtraTreeClassifier()
+            model = ExtraTreesClassifier()
             params = {
                 'n_estimators' : [100, 500, 1000, 2000, 5000], 
                 'max_features': ['sqrt', None],
                 'min_samples_split' : [i for i in range(2, 11, 1)],
-                # 'splitter' : ['random', 'best']
+                'splitter' : ['random', 'best']
             }
         else:
             logger.info(f'Usando modelo SVC')
@@ -395,8 +395,8 @@ class Model():
                 logger.info('Ensemble testará MLPClassifier')
                 estimators.append(('mlp', MLPClassifier()))
             elif model == 'etc':
-                logger.info('Ensemble testará ExtraTreeClassifier')
-                estimators.append(('etc', ExtraTreeClassifier()))
+                logger.info('Ensemble testará ExtraTreesClassifier')
+                estimators.append(('etc', ExtraTreesClassifier()))
             elif model == 'svc':
                 logger.info('Ensemble testará SVC')
                 estimators.append(('svc', SVC(probability=True)))
