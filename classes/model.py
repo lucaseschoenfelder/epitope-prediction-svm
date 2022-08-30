@@ -15,11 +15,11 @@ import json
 import os.path  
 import numpy as np
 import pandas as pd
-# from pip._internal.operations import freeze
-# x = freeze.freeze()
-# for p in x:
-#     print(p)
-# input()
+from pip._internal.operations import freeze
+x = freeze.freeze()
+for p in x:
+    print(p)
+input()
 
 
 class Model():
