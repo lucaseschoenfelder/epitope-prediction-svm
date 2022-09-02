@@ -277,7 +277,7 @@ class Model():
             logger.info(f'Usando modelo AdaBoost')
             model = AdaBoostClassifier()
             params = {
-                'n_estimators' : [i for i in range(20, 1001, 20)],
+                'n_estimators' : [i for i in range(50, 1001, 50)],
                 'algorithm' : ['SAMME', 'SAMME.R'],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01]
             }
@@ -304,8 +304,8 @@ class Model():
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreesClassifier()
             params = {
-                'n_estimators' : [100, 200, 500, 1000, 2000],
-                'max_depth': [1, 2, 5, 8, 13, 21, 34, 53, 54, 55, 89, None] ,
+                'n_estimators' : [100, 200, 500],
+                'max_depth': [1, 2, 5, 10, 20, 50, None] ,
                 'max_features': ['sqrt', None],
                 'min_samples_split' : [i for i in range(2, 11, 1)]
             }

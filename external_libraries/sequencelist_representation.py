@@ -7,6 +7,7 @@ __project__ = "LLP - Life Language Processing"
 __website__ = "https://llp.berkeley.edu/"
 
 from external_libraries.pairwise_align import PWAlignment
+from pip._internal.operations import freeze
 from sklearn.feature_extraction.text import TfidfVectorizer
 import itertools
 from gensim.models import KeyedVectors
