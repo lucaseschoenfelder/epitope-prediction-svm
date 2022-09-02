@@ -1,0 +1,19 @@
+{
+    "abc" : {
+        "abc__algorithm": "SAMME.R",
+        "abc__learning_rate": 0.05,
+        "abc__n_estimators": 400
+    },
+    "gbc" : {
+        "gbc__learning_rate": 0.01,
+        "gbc__max_depth": 3,
+        "gbc__max_features": None,
+        "gbc__n_estimators": 500
+    },
+    "etc" : {
+        "etc__max_depth": 10,
+        "etc__max_features": None,
+        "etc__min_samples_split": 8,
+        "etc__n_estimators": 200
+    }
+}
