@@ -345,7 +345,7 @@ class Model():
         return grid_search
 
     def grid_search_models(self, x, y, path_to_params_file, path_csv_result=None,
-                            models_to_evaluate=['abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc']):
+                            models_to_evaluate=['abc', 'gbc', 'etc']):
 
         logger.info(f'Entrei no grid_search_models com models_to_evaluate = {models_to_evaluate} e path_to_params_file={path_to_params_file}')
         # models_to_evaluate = [
