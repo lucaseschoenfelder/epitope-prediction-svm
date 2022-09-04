@@ -1,4 +1,5 @@
 from genericpath import exists
+from pydoc import cli
 from numpy import ndarray
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
@@ -192,17 +193,19 @@ class Model():
         #     }
         # }
 
-        estimators_combinations = list()
-        logger.info(f'Gerando lista de combinações de classificadores')
-        for n in range(2, len(estimators) + 1):
-            estimators_combinations += list(combinations(estimators, n))
         
-        if len(estimators_combinations) < 1:
-            logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
-            exit(-1)
+        estimators_combinations = estimators
+        #estimators_combinations = list()
+        #logger.info(f'Gerando lista de combinações de classificadores')
+        #for n in range(2, len(estimators) + 1):
+        #    estimators_combinations += list(combinations(estimators, n))
+        
+        #if len(estimators_combinations) < 1:
+        #    logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
+        #    exit(-1)
 
-        for combination in estimators_combinations:
-            logger.info(f'combination : {combination}')
+        #for combination in estimators_combinations:
+        #    logger.info(f'combination : {combination}')
 
         results = dict()
         for combination in estimators_combinations:
@@ -285,11 +288,11 @@ class Model():
             logger.info(f'Usando modelo GradientBoost')
             model = GradientBoostingClassifier()
             params = {
-                'n_estimators' : [1, 2, 5, 10, 20, 50, 100, 200, 500],
+                'n_estimators' : [5, 10, 20, 50, 100, 200, 250, 500],
                 'max_features': ['sqrt', None],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
-                # 'subsample' : [i for i in np.arange(0.4, 1.1, 0.1)],
-                'max_depth': [i for i in range(3, 11, 1)]
+                'subsample' : [0.5, 0.6, 0.7, 0.8, 0.85, 0.9],
+                'max_depth': [3, 5, 7, 9]
             }
         elif model_param == "mlp":
             logger.info(f'Usando modelo Multilayer Perceptron')
@@ -324,7 +327,7 @@ class Model():
                                    param_grid=params,
                                    scoring=scoring, 
                                    cv=cross_valid,
-                                   refit='auc_score',
+                                   refit='mcc',
                                    n_jobs=40, 
                                    verbose=2)
 
@@ -372,10 +375,10 @@ class Model():
             with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'w') as fp:
                 logger.info(f'Salvando os melhores parametros em arquivo...')
                 json.dump(best_params_per_estimator, fp, indent=4)     
-        # else:
-        #     logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
-        #     with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:
-        #         best_params_per_estimator = json.load(fp)
+        else:
+            logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
+            with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:
+                best_params_per_estimator = json.load(fp)
             
         logger.info(f'best_params_per_estimator = {best_params_per_estimator}')
 

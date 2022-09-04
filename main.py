@@ -187,15 +187,15 @@ if __name__=='__main__':
         logger.info(  f"Melhores resultados: \n \
                         roc_auc: {results['mean_test_auc_score'][bi]},\n \
                         accuracy: {results['mean_test_accuracy'][bi]},\n  \
-                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
-                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
-                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
-                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
-                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
-                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+                        precision_+:{results['mean_test_scores_p_1'][bi]},\n \
+                        recall_+:{results['mean_test_scores_r_1'][bi]},\n \
+                        f1_+:{results['mean_test_scores_f_1_1'][bi]},\n \
+                        precision_-:{results['mean_test_scores_p_0'][bi]},\n \
+                        recall_-:{results['mean_test_scores_r_0'][bi]},\n \
+                        f1_-:{results['mean_test_scores_f_1_0'][bi]},\n \
                         precision_micro:{results['mean_test_precision_micro'][bi]},\n \
-                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
-                        mcc -:{results['mean_test_mcc'][bi]}")
+                        precision_macro:{results['mean_test_precision_macro'][bi]},\n \
+                        mcc:{results['mean_test_mcc'][bi]}")
 
         logger.info(f"Melhor score: {gridsearch_model.best_score_}")
         logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
