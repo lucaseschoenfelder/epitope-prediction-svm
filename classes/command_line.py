@@ -46,6 +46,9 @@ class Cli():
         ap.add_argument("-m", "--model", default=None,
             help="Algoritmo a ser usado para treinar o modelo. SVC para SVM, RF para random forest ")
 
+        ap.add_argument("-c", "--combine", action='store_true',
+            help="Se durante o grid search dos models deve ser feito combinação ou não")    
+
         # ap.add_argument("-e", "--ensemble", action='store_true',
         #     help="Rodar ensemble com melhores parâmetros")
 

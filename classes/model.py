@@ -148,7 +148,7 @@ class Model():
                                 param_grid=params,
                                 scoring=scoring, 
                                 cv=cross_valid,
-                                refit='auc_score',
+                                refit='mcc',
                                 n_jobs=40, 
                                 verbose=2)
 
@@ -167,8 +167,9 @@ class Model():
         
         return grid_search    
 
-    def grid_search_ensemble(self, x, y, estimators, best_params_per_model, path_csv_result=None):
-        logger.info(f"Iniciando GridSearchCV para o modelo ensemble")
+    def grid_search_ensemble(self, x, y, estimators, best_params_per_model, path_csv_result=None, testAllCombinations=False):
+        logger.info(f"Iniciando GridSearchCV para o modelo ensemble. estimators = {estimators}. best_params_per_model = {best_params_per_model}")
+        # estimators = [('abc', AdaboostClassifier())]
 
         time_init = time()
 
@@ -194,49 +195,64 @@ class Model():
         # }
 
         
-        estimators_combinations = estimators
-        #estimators_combinations = list()
-        #logger.info(f'Gerando lista de combinações de classificadores')
-        #for n in range(2, len(estimators) + 1):
-        #    estimators_combinations += list(combinations(estimators, n))
-        
-        #if len(estimators_combinations) < 1:
-        #    logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
-        #    exit(-1)
+        if testAllCombinations:
+            estimators_combinations = list()
+            logger.info(f'Gerando lista de combinações de classificadores')
+            for n in range(2, len(estimators) + 1):
+                estimators_combinations += list(combinations(estimators, n))
+            
+            if len(estimators_combinations) < 1:
+                logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
+                exit(-1)
 
-        #for combination in estimators_combinations:
-        #    logger.info(f'combination : {combination}')
+            for combination in estimators_combinations:
+                logger.info(f'combination : {combination}')
+        else:
+            estimators_combinations = [estimators]
 
+        logger.info(f'estimators_combinations = {estimators_combinations}')
         results = dict()
         for combination in estimators_combinations:
-            # if len(best_params_per_model) == 0:
-            #     logger.info(f'Entrei no except best_params_per_model')
-            #     params = dict()
-            #     path_to_ensemble_combination = f'{path_csv_result}_ensemble'
-            #     for model_tuple in combination:
-            #         path_to_ensemble_combination += f'_{model_tuple[0]}'
-            # else:
             params = dict()
             path_to_ensemble_combination = f'{path_csv_result}_ensemble'
             for model_tuple in combination:
+                logger.info(f'model_tuple = {model_tuple}')
                 params.update(best_params_per_model[model_tuple[0]])
                 path_to_ensemble_combination += f'_{model_tuple[0]}'
             
+            logger.info(f'params = {params}')
             cv_ensemble = self.cross_validate_ensemble(combination, params, x, y, path_to_ensemble_combination)
             
             combination_key = path_to_ensemble_combination.split("ensemble_")[1]
 
             logger.info(f'Modelo {combination_key} obteve score {cv_ensemble.best_score_}')
 
-            results[combination_key] = cv_ensemble.best_score_
+            results[combination_key] = dict()
+
+            ensemble_results = cv_ensemble.cv_results_
+            bi = cv_ensemble.best_index_
+
+            results[combination_key]["mean_test_auc_score"] = ensemble_results['mean_test_auc_score'][bi]
+            results[combination_key]["mean_test_accuracy"] = ensemble_results['mean_test_accuracy'][bi]
+            results[combination_key]["mean_test_scores_p_1"] = ensemble_results['mean_test_scores_p_1'][bi]
+            results[combination_key]["mean_test_scores_r_1"] = ensemble_results['mean_test_scores_r_1'][bi]
+            results[combination_key]["mean_test_scores_f_1_1"] = ensemble_results['mean_test_scores_f_1_1'][bi]
+            results[combination_key]["mean_test_scores_p_0"] = ensemble_results['mean_test_scores_p_0'][bi]
+            results[combination_key]["mean_test_scores_r_0"] = ensemble_results['mean_test_scores_r_0'][bi]
+            results[combination_key]["mean_test_scores_f_1_0"] = ensemble_results['mean_test_scores_f_1_0'][bi]
+            results[combination_key]["mean_test_precision_micro"] = ensemble_results['mean_test_precision_micro'][bi]
+            results[combination_key]["mean_test_precision_macro"] = ensemble_results['mean_test_precision_macro'][bi]
+            results[combination_key]["mean_test_mcc"] = ensemble_results['mean_test_mcc'][bi]
 
             del params            
         
-        logger.info(f'Fim do gridsearch ensemble. Resultados:')
-        for key, val in results.items():
-            logger.info(f'{key} : {val}')
+        if testAllCombinations:
+            logger.info(f'Fim do gridsearch ensemble. Resultados:')
+            for key, val in results.items():
+                logger.info(f'{key} : {val}')
         
-        return (max(results, key=results.get), results[max(results, key=results.get)])
+        best_ensemble_model = max(results, key=lambda x : results[x]["mean_test_mcc"])
+        return (best_ensemble_model, results[best_ensemble_model])
 
     def grid_search(self, x, y, path_csv_result=None, model_param="SVC"):
         """Define o gridsearch para ser utilizado para valorar os melhores parâmetros para o modelo passado como parâmetro
@@ -347,34 +363,41 @@ class Model():
         
         return grid_search
 
-    def grid_search_models(self, x, y, path_to_params_file, path_csv_result=None,
+    def get_models_and_params(self, x, y, path_to_params_file, path_csv_result=None,
                             models_to_evaluate=['abc', 'gbc', 'etc']):
 
-        logger.info(f'Entrei no grid_search_models com models_to_evaluate = {models_to_evaluate} e path_to_params_file={path_to_params_file}')
+        logger.info(f'Entrei no get_models_and_params com models_to_evaluate = {models_to_evaluate} e path_to_params_file={path_to_params_file}')
         # models_to_evaluate = [
         #     'abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc'
         # ]
 
         
         path_to_params_json = f'/../model_params_dict/{path_to_params_file}'
+        # if not exists(f'{os.path.dirname(__file__)}{path_to_params_json}'):
+        #     logger.info("Arquivo com os melhores parametros não encontrado. Iniciando busca pelos melhores parametros de cada modelo")
+        #     best_params_per_estimator = dict()
+        #     for model in models_to_evaluate:
+
+        #         grid_search = self.grid_search(x, y, path_csv_result, model)
+        #         logger.info(f'Melhores parametros para o modelo {model}: {grid_search.best_params_}')
+        #         best_params = grid_search.best_params_
+
+        #         best_params_per_estimator[model] = dict()
+
+        #         for param, best_value in best_params.items():
+        #             key_name = f'{model}__{param}'
+        #             best_params_per_estimator[model][key_name] = [best_value]
+
+        #     with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'w') as fp:
+        #         logger.info(f'Salvando os melhores parametros em arquivo...')
+        #         json.dump(best_params_per_estimator, fp, indent=4)     
+        # else:
+        #     logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
+        #     with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:
+        #         best_params_per_estimator = json.load(fp)
         if not exists(f'{os.path.dirname(__file__)}{path_to_params_json}'):
-            logger.info("Arquivo com os melhores parametros não encontrado. Iniciando busca pelos melhores parametros de cada modelo")
-            best_params_per_estimator = dict()
-            for model in models_to_evaluate:
-
-                grid_search = self.grid_search(x, y, path_csv_result, model)
-                logger.info(f'Melhores parametros para o modelo {model}: {grid_search.best_params_}')
-                best_params = grid_search.best_params_
-
-                best_params_per_estimator[model] = dict()
-
-                for param, best_value in best_params.items():
-                    key_name = f'{model}__{param}'
-                    best_params_per_estimator[model][key_name] = [best_value]
-
-            with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'w') as fp:
-                logger.info(f'Salvando os melhores parametros em arquivo...')
-                json.dump(best_params_per_estimator, fp, indent=4)     
+            logger.info(f'Arquivo com os melhors parametros não encontrado. Abortando execução...')
+            exit(0)
         else:
             logger.info("Arquivo com os melhores parametros encontrado! Lendo arquivo...")
             with open(f'{os.path.dirname(__file__)}{path_to_params_json}', 'r') as fp:

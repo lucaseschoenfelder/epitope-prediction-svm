@@ -205,10 +205,26 @@ if __name__=='__main__':
         logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
         logger.info("Aplicação finalizada")        
     elif cli.get_arg_from_cli('params'):
-        estimators, best_params_per_estimator = model.grid_search_models(x, y, cli.get_arg_from_cli('params'), cli.get_arg_from_cli('result_path'))
-        best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'))
+        # Carrega os params e roda ensemble com todos os modelos definidos pela variavel estimators
+        estimators, best_params_per_estimator = model.get_models_and_params(x, y, cli.get_arg_from_cli('params'), cli.get_arg_from_cli('result_path'))
 
-        logger.info(f"Melhor score: {best_ensemble_model[1]}")
+        #caso queira rodar o ensemble de todas as possiveis permutacoes de combinações de modelos, rodar o programa com o argumento --combine
+        best_ensemble_model = model.grid_search_ensemble(x, y, estimators, best_params_per_estimator, cli.get_arg_from_cli('result_path'), cli.get_arg_from_cli('combine'))
+        
+        logger.info(  f"Melhores resultados: \n \
+                        roc_auc: {best_ensemble_model[1]['mean_test_auc_score']},\n \
+                        accuracy: {best_ensemble_model[1]['mean_test_accuracy']},\n  \
+                        precision_+:{best_ensemble_model[1]['mean_test_scores_p_1']},\n \
+                        recall_+:{best_ensemble_model[1]['mean_test_scores_r_1']},\n \
+                        f1_+:{best_ensemble_model[1]['mean_test_scores_f_1_1']},\n \
+                        precision_-:{best_ensemble_model[1]['mean_test_scores_p_0']},\n \
+                        recall_-:{best_ensemble_model[1]['mean_test_scores_r_0']},\n \
+                        f1_-:{best_ensemble_model[1]['mean_test_scores_f_1_0']},\n \
+                        precision_micro:{best_ensemble_model[1]['mean_test_precision_micro']},\n \
+                        precision_macro:{best_ensemble_model[1]['mean_test_precision_macro']},\n \
+                        mcc:{best_ensemble_model[1]['mean_test_mcc']}")
+
+        logger.info(f"Melhor score: {best_ensemble_model[1]['mean_test_mcc']}")
         logger.info(f"Melhor combinação: {best_ensemble_model[0]}")
 
         time_end = time()
