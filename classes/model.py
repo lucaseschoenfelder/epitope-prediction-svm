@@ -323,10 +323,9 @@ class Model():
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreesClassifier()
             params = {
-                'n_estimators' : [100, 200, 500],
-                'max_depth': [1, 2, 5, 10, 20, 50, None] ,
-                'max_features': ['sqrt', None],
-                'min_samples_split' : [i for i in range(2, 11, 1)]
+                'n_estimators' : [10, 50, 100, 200, 500],
+                'max_features': ['sqrt', 'log2', None],
+                'min_samples_split' : [i for i in range(2, 3, 5, 7, 9)]
             }
         else:
             logger.info(f'Usando modelo SVC')
