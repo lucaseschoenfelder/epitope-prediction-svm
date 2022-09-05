@@ -296,7 +296,7 @@ class Model():
             logger.info(f'Usando modelo AdaBoost')
             model = AdaBoostClassifier()
             params = {
-                'n_estimators' : [5, 10, 20, 50, 100, 250, 500, 1000],
+                'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 1000],
                 'algorithm' : ['SAMME', 'SAMME.R'],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01]
             }
@@ -304,7 +304,7 @@ class Model():
             logger.info(f'Usando modelo GradientBoost')
             model = GradientBoostingClassifier()
             params = {
-                'n_estimators' : [5, 10, 20, 50, 100, 200, 250, 500],
+                'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 1000],
                 'max_features': ['sqrt', None],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
                 'subsample' : [0.5, 0.6, 0.7, 0.8, 0.85, 0.9],
@@ -323,10 +323,10 @@ class Model():
             logger.info(f'Usando modelo Extremely Randomized Tree')
             model = ExtraTreesClassifier()
             params = {
-                'n_estimators' : [10, 50, 100, 200, 500],
+                'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 1000],
                 'max_features': ['sqrt', 'log2', None],
-                'min_samples_split' : [2, 3, 5, 7, 9],
-                'max_depth': [1, 5, 10, 20, 50, None]
+                'min_samples_split' : [2, 8, 16, 32],
+                'max_depth': [1, 2, 8, 16, 32, None]
             }
         else:
             logger.info(f'Usando modelo SVC')
