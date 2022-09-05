@@ -296,7 +296,7 @@ class Model():
             logger.info(f'Usando modelo AdaBoost')
             model = AdaBoostClassifier()
             params = {
-                'n_estimators' : [i for i in range(50, 1001, 50)],
+                'n_estimators' : [5, 10, 20, 50, 100, 250, 500, 1000],
                 'algorithm' : ['SAMME', 'SAMME.R'],
                 'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01]
             }
