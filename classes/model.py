@@ -325,7 +325,8 @@ class Model():
             params = {
                 'n_estimators' : [10, 50, 100, 200, 500],
                 'max_features': ['sqrt', 'log2', None],
-                'min_samples_split' : [2, 3, 5, 7, 9]
+                'min_samples_split' : [2, 3, 5, 7, 9],
+                'max_depth': [1, 5, 10, 20, 50, None]
             }
         else:
             logger.info(f'Usando modelo SVC')
