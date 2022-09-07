@@ -275,11 +275,21 @@ class Model():
         elif model_param == "xgb":
             logger.info(f'Usando modelo XGBClassifier')
             model = XGBClassifier(verbosity=2, tree_method="hist")
+            # params = {
+            #     'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 750, 1000],
+            #     'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
+            #     'max_depth': [3, 5, 8, 16],
+            #     'min_child_weight' : [1, 3, 5]
+            #
             params = {
-                'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 750, 1000],
-                'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
-                'max_depth': [3, 5, 8, 16],
-                'min_child_weight' : [1, 3, 5]
+                'n_estimators' : [500],
+                'learning_rate' : [0.01],
+                'max_depth': [3],
+                'min_child_weight' : [5],
+                'subsample' : [0.6, 0.7, 0.8, 0.9],
+                'colsample_bytree' : [0.6, 0.7, 0.8, 0.9],
+                'gamma' : [0.0, 0.01, 0.05, 0.1, 0.25, 0.5, 1],
+                'reg_alpha': [0.0, 0.01, 0.05, 0.1, 0.25, 0.5, 1]
             }
         elif model_param == "mlp":
             logger.info(f'Usando modelo Multilayer Perceptron')
