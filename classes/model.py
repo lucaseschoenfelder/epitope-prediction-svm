@@ -2,12 +2,12 @@ from genericpath import exists
 from pydoc import cli
 from numpy import ndarray
 from sklearn.svm import SVC
-from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.metrics._scorer import make_scorer
-from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support, classification_report
+from sklearn.metrics import matthews_corrcoef, precision_recall_fscore_support
 from sklearn.preprocessing import StandardScaler
+from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier, ExtraTreesClassifier
-# from sklearn.tree import ExtraTreesClassifier
 from sklearn.neural_network import MLPClassifier
 from utils.setup_logger import logger
 from itertools import combinations
@@ -16,12 +16,6 @@ import json
 import os.path  
 import numpy as np
 import pandas as pd
-# from pip._internal.operations import freeze
-# x = freeze.freeze()
-# for p in x:
-#     print(p)
-# input()
-
 
 class Model():
     """Classe que contém as definições do modelo de ML que será usado no projeto"""
@@ -117,6 +111,8 @@ class Model():
             estimators.append(('abc', AdaBoostClassifier()))
             logger.info('Ensemble testará GradientBoostingClassifier')
             estimators.append(('gbc', GradientBoostingClassifier()))
+            logger.info('Ensemble testará GradientBoostingClassifier')
+            estimators.append(('xgb', XGBClassifier()))
             logger.info('Ensemble testará MLPClassifier')
             estimators.append(('mlp', MLPClassifier()))
             logger.info('Ensemble testará ExtraTreesClassifier')
@@ -133,17 +129,6 @@ class Model():
 
         eclf = VotingClassifier(estimators, voting = 'soft', verbose = True)
 
-        # if params == None or len(params)==0:
-        #     logger.info(f'Usando GridSearch com parametros default')
-        #     logger.info(f'Estimators={estimators}')
-        #     grid_search = GridSearchCV(estimator=eclf,
-        #                             param_grid=params,
-        #                             scoring=scoring, 
-        #                             cv=cross_valid,
-        #                             refit='auc_score',
-        #                             n_jobs=40, 
-        #                             verbose=2)
-        # else:
         grid_search = GridSearchCV(estimator=eclf,
                                 param_grid=params,
                                 scoring=scoring, 
@@ -169,32 +154,9 @@ class Model():
 
     def grid_search_ensemble(self, x, y, estimators, best_params_per_model, path_csv_result=None, testAllCombinations=False):
         logger.info(f"Iniciando GridSearchCV para o modelo ensemble. estimators = {estimators}. best_params_per_model = {best_params_per_model}")
-        # estimators = [('abc', AdaboostClassifier())]
 
         time_init = time()
 
-        # best_params_per_model = {
-        #     'rfc' : {
-        #         'rfc__max_features': ['sqrt'], 'rfc__min_samples_split': [10], 'rfc__n_estimators': [860]
-        #     },
-        #     'abc': {
-        #         'abc__n_estimators': [60]
-        #     },
-        #     'gbc' : {
-        #         'gbc__max_features': [None], 'gbc__min_samples_split': [7], 'gbc__n_estimators': [100]
-        #     },
-        #     'mlp' : {
-        #         'mlp__activation': ['logistic'], 'mlp__learning_rate': ['adaptive'], 'mlp__max_iter': [1000], 'mlp__solver': ['adam']
-        #     },
-        #     'etc' : {
-        #         'etc__max_features': [None], 'etc__min_samples_split': [9], 'etc__splitter': ['random']
-        #     },
-        #     'svc' : {
-        #         'svc__C': [500], 'svc__gamma': [0.0001], 'svc__kernel': ['rbf']
-        #     }
-        # }
-
-        
         if testAllCombinations:
             estimators_combinations = list()
             logger.info(f'Gerando lista de combinações de classificadores')
@@ -310,6 +272,15 @@ class Model():
                 #'subsample' : [0.5, 0.6, 0.7, 0.8, 0.9],
                 'max_depth': [3, 5, 8, 16]
             }
+        elif model_param == "xgb":
+            logger.info(f'Usando modelo XGBClassifier')
+            model = XGBClassifier(verbosity=2, tree_method="hist")
+            params = {
+                'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 750, 1000],
+                'learning_rate' : [1, 0.5, 0.25, 0.1, 0.05, 0.01],
+                'max_depth': [3, 5, 8, 16],
+                'min_child_weight' : [1, 3, 5]
+            }
         elif model_param == "mlp":
             logger.info(f'Usando modelo Multilayer Perceptron')
             model = MLPClassifier()
@@ -367,10 +338,6 @@ class Model():
                             models_to_evaluate=['abc', 'gbc', 'etc']):
 
         logger.info(f'Entrei no get_models_and_params com models_to_evaluate = {models_to_evaluate} e path_to_params_file={path_to_params_file}')
-        # models_to_evaluate = [
-        #     'abc', 'rfc', 'gbc', 'mlp', 'etc', 'svc'
-        # ]
-
         
         path_to_params_json = f'/../model_params_dict/{path_to_params_file}'
         # if not exists(f'{os.path.dirname(__file__)}{path_to_params_json}'):
@@ -417,6 +384,9 @@ class Model():
             elif model == 'gbc':
                 logger.info('Ensemble testará GradientBoostingClassifier')
                 estimators.append(('gbc', GradientBoostingClassifier()))
+            elif model == 'xgb':
+                logger.info('Ensemble testará XGBClassifier')
+                estimators.append(('xgb', XGBClassifier()))    
             elif model == 'mlp':
                 logger.info('Ensemble testará MLPClassifier')
                 estimators.append(('mlp', MLPClassifier()))
