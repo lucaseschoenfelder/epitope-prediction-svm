@@ -200,6 +200,9 @@ if __name__=='__main__':
         logger.info(f"Melhor score: {gridsearch_model.best_score_}")
         logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
 
+        model.plot_grid_search(gridsearch_model)
+        #model.table_grid_search(gridsearch_model, all_ranks=True)
+
         time_end = time()
 
         logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
