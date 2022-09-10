@@ -1,3 +1,697 @@
+FINAL:
+-------------------------------
+          Ensemble
+-------------------------------
+viral_ensemble_gbc:
+2022-09-07 13:50:20,398 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-09-07 13:50:20,398 - grid_search_ensemble - INFO - abc_gbc : {'mean_test_auc_score': 0.9101778725760253, 'mean_test_accuracy': 0.8442341030420858, 'mean_test_scores_p_1': 0.7973233922924354, 'mean_test_scores_r_1': 0.7406893146808301, 'mean_test_scores_f_1_1': 0.7664044044146974, 'mean_test_scores_p_0': 0.8688292159596669, 'mean_test_scores_r_0': 0.8984633569739952, 'mean_test_scores_f_1_0': 0.8829997697943035, 'mean_test_precision_micro': 0.8442341030420858, 'mean_test_precision_macro': 0.833076304126051, 'mean_test_mcc': 0.6523254565443145}
+2022-09-07 13:50:20,398 - grid_search_ensemble - INFO - abc_etc : {'mean_test_auc_score': 0.9093513962294992, 'mean_test_accuracy': 0.843923423991173, 'mean_test_scores_p_1': 0.8035340815793598, 'mean_test_scores_r_1': 0.730985822299022, 'mean_test_scores_f_1_1': 0.7636600619528503, 'mean_test_scores_p_0': 0.8652795404816207, 'mean_test_scores_r_0': 0.9030732860520094, 'mean_test_scores_f_1_0': 0.8832897799693142, 'mean_test_precision_micro': 0.843923423991173, 'mean_test_precision_macro': 0.8344068110304901, 'mean_test_mcc': 0.6509792443542476}
+2022-09-07 13:50:20,398 - grid_search_ensemble - INFO - gbc_etc : {'mean_test_auc_score': 0.9104506682687454, 'mean_test_accuracy': 0.8440010937539011, 'mean_test_scores_p_1': 0.7996732123004786, 'mean_test_scores_r_1': 0.7373033101661572, 'mean_test_scores_f_1_1': 0.7653064274615545, 'mean_test_scores_p_0': 0.8676283493637159, 'mean_test_scores_r_0': 0.8998817966903074, 'mean_test_scores_f_1_0': 0.8829716282221887, 'mean_test_precision_micro': 0.8440010937539011, 'mean_test_precision_macro': 0.8336507808320974, 'mean_test_mcc': 0.6518387888566306}
+2022-09-07 13:50:20,398 - grid_search_ensemble - INFO - abc_gbc_etc : {'mean_test_auc_score': 0.9109400171139571, 'mean_test_accuracy': 0.8435357068835805, 'mean_test_scores_p_1': 0.79894046986479, 'mean_test_scores_r_1': 0.7366266182454873, 'mean_test_scores_f_1_1': 0.764597067751288, 'mean_test_scores_p_0': 0.8673022856619763, 'mean_test_scores_r_0': 0.8995271867612293, 'mean_test_scores_f_1_0': 0.8826210218691714, 'mean_test_precision_micro': 0.8435357068835805, 'mean_test_precision_macro': 0.8331213777633831, 'mean_test_mcc': 0.6507979021140307}
+2022-09-07 13:50:20,399 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9101778725760253,
+                         accuracy: 0.8442341030420858,
+                          precision_+:0.7973233922924354,
+                         recall_+:0.7406893146808301,
+                         f1_+:0.7664044044146974,
+                         precision_-:0.8688292159596669,
+                         recall_-:0.8984633569739952,
+                         f1_-:0.8829997697943035,
+                         precision_micro:0.8442341030420858,
+                         precision_macro:0.833076304126051,
+                         mcc:0.6523254565443145
+2022-09-07 13:50:20,399 - <module> - INFO - Melhor score: 0.6523254565443145
+2022-09-07 13:50:20,399 - <module> - INFO - Melhor combinação: abc_gbc
+2022-09-07 13:50:20,399 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 436.1584897041321 segundos
+2022-09-07 13:50:20,399 - <module> - INFO - Aplicação finalizada
+
+viral_ensemble_xgb:
+2022-09-07 14:09:20,651 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-09-07 14:09:20,651 - grid_search_ensemble - INFO - abc_xgb : {'mean_test_auc_score': 0.9115206269003396, 'mean_test_accuracy': 0.8436908960028349, 'mean_test_scores_p_1': 0.8015994736257774, 'mean_test_scores_r_1': 0.7325636673190121, 'mean_test_scores_f_1_1': 0.7638832122843424, 'mean_test_scores_p_0': 0.865681052430366, 'mean_test_scores_r_0': 0.9018912529550829, 'mean_test_scores_f_1_0': 0.8830071511566382, 'mean_test_precision_micro': 0.8436908960028349, 'mean_test_precision_macro': 0.8336402630280716, 'mean_test_mcc': 0.6504577823039187}
+2022-09-07 14:09:20,651 - grid_search_ensemble - INFO - abc_etc : {'mean_test_auc_score': 0.9087449021981856, 'mean_test_accuracy': 0.8419837254473157, 'mean_test_scores_p_1': 0.7984492240283173, 'mean_test_scores_r_1': 0.732337170211304, 'mean_test_scores_f_1_1': 0.7618658360699523, 'mean_test_scores_p_0': 0.865410778063259, 'mean_test_scores_r_0': 0.8994089834515366, 'mean_test_scores_f_1_0': 0.8815287118334769, 'mean_test_precision_micro': 0.8419837254473157, 'mean_test_precision_macro': 0.8319300010457882, 'mean_test_mcc': 0.6473607085176015}
+2022-09-07 14:09:20,651 - grid_search_ensemble - INFO - xgb_etc : {'mean_test_auc_score': 0.9112994629761818, 'mean_test_accuracy': 0.843070410256981, 'mean_test_scores_p_1': 0.7993512405023262, 'mean_test_scores_r_1': 0.7348220216266564, 'mean_test_scores_f_1_1': 0.7638890768077432, 'mean_test_scores_p_0': 0.8663776262426689, 'mean_test_scores_r_0': 0.8997635933806146, 'mean_test_scores_f_1_0': 0.8822798377046672, 'mean_test_precision_micro': 0.843070410256981, 'mean_test_precision_macro': 0.8328644333724975, 'mean_test_mcc': 0.6497526868097967}
+2022-09-07 14:09:20,651 - grid_search_ensemble - INFO - abc_xgb_etc : {'mean_test_auc_score': 0.9117768799174207, 'mean_test_accuracy': 0.8436132262401067, 'mean_test_scores_p_1': 0.8001970314596978, 'mean_test_scores_r_1': 0.7350464828053067, 'mean_test_scores_f_1_1': 0.7643802349956429, 'mean_test_scores_p_0': 0.8666582769815658, 'mean_test_scores_r_0': 0.9004728132387706, 'mean_test_scores_f_1_0': 0.8827701897970389, 'mean_test_precision_micro': 0.8436132262401067, 'mean_test_precision_macro': 0.8334276542206318, 'mean_test_mcc': 0.6507741233524668}
+2022-09-07 14:09:20,652 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9117768799174207,
+                         accuracy: 0.8436132262401067,
+                          precision_+:0.8001970314596978,
+                         recall_+:0.7350464828053067,
+                         f1_+:0.7643802349956429,
+                         precision_-:0.8666582769815658,
+                         recall_-:0.9004728132387706,
+                         f1_-:0.8827701897970389,
+                         precision_micro:0.8436132262401067,
+                         precision_macro:0.8334276542206318,
+                         mcc:0.6507741233524668
+2022-09-07 14:09:20,653 - <module> - INFO - Melhor score: 0.6507741233524668
+2022-09-07 14:09:20,653 - <module> - INFO - Melhor combinação: abc_xgb_etc
+2022-09-07 14:09:20,653 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 475.92356610298157 segundos
+2022-09-07 14:09:20,653 - <module> - INFO - Aplicação finalizada
+
+dcvst_ensemble_gbc:
+2022-09-07 14:35:55,950 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-09-07 14:35:55,950 - grid_search_ensemble - INFO - abc_gbc : {'mean_test_auc_score': 0.8964608352936322, 'mean_test_accuracy': 0.8162519045200609, 'mean_test_scores_p_1': 0.8150924551473905, 'mean_test_scores_r_1': 0.8182053980438282, 'mean_test_scores_f_1_1': 0.816581361046269, 'mean_test_scores_p_0': 0.8176177846288157, 'mean_test_scores_r_0': 0.8143025463249556, 'mean_test_scores_f_1_0': 0.8158932861975107, 'mean_test_precision_micro': 0.8162519045200609, 'mean_test_precision_macro': 0.816355119888103, 'mean_test_mcc': 0.6326090763321849}
+2022-09-07 14:35:55,950 - grid_search_ensemble - INFO - abc_etc : {'mean_test_auc_score': 0.8950163014320498, 'mean_test_accuracy': 0.811173184357542, 'mean_test_scores_p_1': 0.8131688078410566, 'mean_test_scores_r_1': 0.8080477487515992, 'mean_test_scores_f_1_1': 0.8105735387503215, 'mean_test_scores_p_0': 0.8092803659707547, 'mean_test_scores_r_0': 0.814303165366679, 'mean_test_scores_f_1_0': 0.8117583413951763, 'mean_test_precision_micro': 0.811173184357542, 'mean_test_precision_macro': 0.8112245869059057, 'mean_test_mcc': 0.6224000368840427}
+2022-09-07 14:35:55,951 - grid_search_ensemble - INFO - gbc_etc : {'mean_test_auc_score': 0.8967793322603278, 'mean_test_accuracy': 0.8135093956323006, 'mean_test_scores_p_1': 0.8164009121149484, 'mean_test_scores_r_1': 0.809064215261442, 'mean_test_scores_f_1_1': 0.8126538144479143, 'mean_test_scores_p_0': 0.810855661871645, 'mean_test_scores_r_0': 0.8179606702158392, 'mean_test_scores_f_1_0': 0.8143314773383592, 'mean_test_precision_micro': 0.8135093956323006, 'mean_test_precision_macro': 0.8136282869932968, 'mean_test_mcc': 0.6271407094730819}
+2022-09-07 14:35:55,951 - grid_search_ensemble - INFO - abc_gbc_etc : {'mean_test_auc_score': 0.8967818084272213, 'mean_test_accuracy': 0.8137125444388014, 'mean_test_scores_p_1': 0.8170051536137581, 'mean_test_scores_r_1': 0.8086575048491602, 'mean_test_scores_f_1_1': 0.8127479124057718, 'mean_test_scores_p_0': 0.8106711623654632, 'mean_test_scores_r_0': 0.8187732656514383, 'mean_test_scores_f_1_0': 0.8146414927630307, 'mean_test_precision_micro': 0.8137125444388014, 'mean_test_precision_macro': 0.8138381579896107, 'mean_test_mcc': 0.6275535208071528}
+2022-09-07 14:35:55,952 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8964608352936322,
+                         accuracy: 0.8162519045200609,
+                          precision_+:0.8150924551473905,
+                         recall_+:0.8182053980438282,
+                         f1_+:0.816581361046269,
+                         precision_-:0.8176177846288157,
+                         recall_-:0.8143025463249556,
+                         f1_-:0.8158932861975107,
+                         precision_micro:0.8162519045200609,
+                         precision_macro:0.816355119888103,
+                         mcc:0.6326090763321849
+2022-09-07 14:35:55,952 - <module> - INFO - Melhor score: 0.6326090763321849
+2022-09-07 14:35:55,953 - <module> - INFO - Melhor combinação: abc_gbc
+2022-09-07 14:35:55,953 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 557.9925935268402 segundos
+2022-09-07 14:35:55,953 - <module> - INFO - Aplicação finalizada
+
+
+dcvst_ensemble_xgb:
+2022-09-07 14:48:04,924 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-09-07 14:48:04,924 - grid_search_ensemble - INFO - abc_xgb : {'mean_test_auc_score': 0.8976083323015972, 'mean_test_accuracy': 0.8137125444388014, 'mean_test_scores_p_1': 0.8125730296243392, 'mean_test_scores_r_1': 0.8157636911394495, 'mean_test_scores_f_1_1': 0.8141095265914113, 'mean_test_scores_p_0': 0.8150355915507836, 'mean_test_scores_r_0': 0.8116610952911559, 'mean_test_scores_f_1_0': 0.8132883274704646, 'mean_test_precision_micro': 0.8137125444388014, 'mean_test_precision_macro': 0.8138043105875614, 'mean_test_mcc': 0.6275166924780147}
+2022-09-07 14:48:04,925 - grid_search_ensemble - INFO - abc_etc : {'mean_test_auc_score': 0.8951588873756757, 'mean_test_accuracy': 0.8115794819705435, 'mean_test_scores_p_1': 0.8134601154436577, 'mean_test_scores_r_1': 0.8086566794601957, 'mean_test_scores_f_1_1': 0.8110243571041271, 'mean_test_scores_p_0': 0.8098013837895852, 'mean_test_scores_r_0': 0.8145068300936817, 'mean_test_scores_f_1_0': 0.8121207642223827, 'mean_test_precision_micro': 0.8115794819705435, 'mean_test_precision_macro': 0.8116307496166215, 'mean_test_mcc': 0.623212500268089}
+2022-09-07 14:48:04,925 - grid_search_ensemble - INFO - xgb_etc : {'mean_test_auc_score': 0.8982926829268294, 'mean_test_accuracy': 0.8142204164550533, 'mean_test_scores_p_1': 0.8169609705720792, 'mean_test_scores_r_1': 0.8100782056043911, 'mean_test_scores_f_1_1': 0.8134521955238692, 'mean_test_scores_p_0': 0.8116857509778475, 'mean_test_scores_r_0': 0.8183671742808798, 'mean_test_scores_f_1_0': 0.8149598753517402, 'mean_test_precision_micro': 0.8142204164550533, 'mean_test_precision_macro': 0.8143233607749633, 'mean_test_mcc': 0.6285460402110987}
+2022-09-07 14:48:04,925 - grid_search_ensemble - INFO - abc_xgb_etc : {'mean_test_auc_score': 0.8982926829268294, 'mean_test_accuracy': 0.814423565261554, 'mean_test_scores_p_1': 0.817153493519221, 'mean_test_scores_r_1': 0.810280838595188, 'mean_test_scores_f_1_1': 0.813667702283591, 'mean_test_scores_p_0': 0.8118441825293718, 'mean_test_scores_r_0': 0.8185696009244356, 'mean_test_scores_f_1_0': 0.8151584896007336, 'mean_test_precision_micro': 0.814423565261554, 'mean_test_precision_macro': 0.8144988380242963, 'mean_test_mcc': 0.6289240514956054}
+2022-09-07 14:48:04,927 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8982926829268294,
+                         accuracy: 0.814423565261554,
+                          precision_+:0.817153493519221,
+                         recall_+:0.810280838595188,
+                         f1_+:0.813667702283591,
+                         precision_-:0.8118441825293718,
+                         recall_-:0.8185696009244356,
+                         f1_-:0.8151584896007336,
+                         precision_micro:0.814423565261554,
+                         precision_macro:0.8144988380242963,
+                         mcc:0.6289240514956054
+2022-09-07 14:48:04,927 - <module> - INFO - Melhor score: 0.6289240514956054
+2022-09-07 14:48:04,927 - <module> - INFO - Melhor combinação: abc_xgb_etc
+2022-09-07 14:48:04,927 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 559.9773707389832 segundos
+2022-09-07 14:48:04,927 - <module> - INFO - Aplicação finalizada
+
+-------------------------------
+          Adaboost
+-------------------------------
+viral_adaboost:
+2022-09-05 23:54:15,626 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 4963.494502067566 segundos
+2022-09-05 23:54:15,626 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-05 23:54:15,627 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9096371314125367,
+                         accuracy: 0.842372044179716,
+                          precision_+:0.7976597838906386,
+                         recall_+:0.7334632934715389,
+                         f1_+:0.7624173535930623,
+                         precision_-:0.8658811369564521,
+                         recall_-:0.8994089834515367,
+                         f1_-:0.8818728344541386,
+                         precision_micro:0.842372044179716,
+                         precision_macro:0.8317704604235454,
+                         mcc:0.647807116594352
+2022-09-05 23:54:15,627 - <module> - INFO - Melhor score: 0.647807116594352
+2022-09-05 23:54:15,627 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.05, 'n_estimators': 400}
+2022-09-05 23:54:15,627 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 5000.763056516647 segundos
+2022-09-05 23:54:15,627 - <module> - INFO - Aplicação finalizada
+
+dcvst_adaboost:
+2022-09-06 19:51:55,304 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 1550.4980161190033 segundos
+2022-09-06 19:51:55,304 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-06 19:51:55,304 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8980579629400355,
+                         accuracy: 0.8164550533265617,
+                          precision_+:0.8171718388427491,
+                         recall_+:0.8155625025793405,
+                         f1_+:0.8163156127241866,
+                         precision_-:0.8158986424914602,
+                         recall_-:0.8173500887293137,
+                         f1_-:0.8165722454279442,
+                         precision_micro:0.8164550533265617,
+                         precision_macro:0.8165352406671047,
+                         mcc:0.6329915264777751
+2022-09-06 19:51:55,304 - <module> - INFO - Melhor score: 0.6329915264777751
+2022-09-06 19:51:55,305 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.05, 'n_estimators': 750}
+2022-09-06 19:51:55,305 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1556.0299937725067 segundos
+2022-09-06 19:51:55,305 - <module> - INFO - Aplicação finalizada
+
+-------------------------------
+         GradientBoost
+-------------------------------
+viral_gradient_boost:
+2022-09-06 15:49:01,249 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 20582.369210243225 segundos
+2022-09-06 15:49:01,249 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-06 15:49:01,249 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9089156283714248,
+                         accuracy: 0.844311622398612,
+                          precision_+:0.7972458532962878,
+                         recall_+:0.7413660066015,
+                         f1_+:0.7666534850527211,
+                         precision_-:0.8691210485200072,
+                         recall_-:0.89822695035461,
+                         f1_-:0.8830167216088954,
+                         precision_micro:0.844311622398612,
+                         precision_macro:0.8331834509081475,
+                         mcc:0.6526452576851112
+2022-09-06 15:49:01,249 - <module> - INFO - Melhor score: 0.6526452576851112
+2022-09-06 15:49:01,250 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.1, 'max_depth': 3, 'max_features': None, 'n_estimators': 50}
+2022-09-06 15:49:01,250 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 20589.931886672974 segundos
+2022-09-06 15:49:01,250 - <module> - INFO - Aplicação finalizada
+
+viral_XGB:
+2022-09-07 01:01:28,749 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 7354.198230266571 segundos
+2022-09-07 01:01:28,750 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-07 01:01:28,750 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.910941606781083,
+                         accuracy: 0.8442338022296816,
+                          precision_+:0.8021950487869158,
+                         recall_+:0.7332398502574178,
+                         f1_+:0.7646484407276338,
+                         precision_-:0.8660160258169753,
+                         recall_-:0.9023640661938535,
+                         f1_-:0.8834393099897015,
+                         precision_micro:0.8442338022296816,
+                         precision_macro:0.8341055373019456,
+                         mcc:0.651516178405912
+2022-09-07 01:01:28,750 - <module> - INFO - Melhor score: 0.651516178405912
+2022-09-07 01:01:28,750 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.01, 'max_depth': 3, 'min_child_weight': 5, 'n_estimators': 500}
+2022-09-07 01:01:28,750 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 7362.080565929413 segundos
+2022-09-07 01:01:28,750 - <module> - INFO - Aplicação finalizada
+
+viral_XGB_extra_parameters:
+2022-09-07 16:11:52,288 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 4077.7710292339325 segundos
+2022-09-07 16:11:52,288 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-07 16:11:52,289 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9113138490951694,
+                         accuracy: 0.8442339225546434,
+                          precision_+:0.7976899086178455,
+                         recall_+:0.7406880422251686,
+                         f1_+:0.7665080616408448,
+                         precision_-:0.8688108556259813,
+                         recall_-:0.8984633569739954,
+                         f1_-:0.8829601985747644,
+                         precision_micro:0.8442339225546434,
+                         precision_macro:0.8332503821219135,
+                         mcc:0.6524945708635357
+2022-09-07 16:11:52,289 - <module> - INFO - Melhor score: 0.6524945708635357
+2022-09-07 16:11:52,289 - <module> - INFO - Melhores parâmetros: {'colsample_bytree': 0.9, 'gamma': 1, 'learning_rate': 0.01, 'max_depth': 3, 'min_child_weight': 5, 'n_estimators': 500, 'reg_alpha': 0.5, 'subsample': 0.6}
+2022-09-07 16:11:52,289 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 4086.2929146289825 segundos
+2022-09-07 16:11:52,289 - <module> - INFO - Aplicação finalizada
+
+
+dcvst_gradient_boost:
+2022-09-07 04:59:34,820 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 14152.834197998047 segundos
+2022-09-07 04:59:34,820 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-07 04:59:34,821 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.895713342412612,
+                         accuracy: 0.8164550533265617,
+                          precision_+:0.8158314661293027,
+                         recall_+:0.8175960546407494,
+                         f1_+:0.8166330141784759,
+                         precision_-:0.8173229080604905,
+                         recall_-:0.8153186001403162,
+                         f1_-:0.8162422750227746,
+                         precision_micro:0.8164550533265617,
+                         precision_macro:0.8165771870948966,
+                         mcc:0.6330344875403053
+2022-09-07 04:59:34,821 - <module> - INFO - Melhor score: 0.6330344875403053
+2022-09-07 04:59:34,821 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.25, 'max_depth': 3, 'max_features': None, 'n_estimators': 10}
+2022-09-07 04:59:34,821 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 14158.379961013794 segundos
+2022-09-07 04:59:34,821 - <module> - INFO - Aplicação finalizada
+
+dcvst_xgb:
+2022-09-07 11:23:09,152 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 1848.8560514450073 segundos
+2022-09-07 11:23:09,152 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-07 11:23:09,152 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8977821798522552,
+                         accuracy: 0.8169629253428136,
+                          precision_+:0.8138392926301833,
+                         recall_+:0.822062234327927,
+                         f1_+:0.8178832133062921,
+                         precision_-:0.8203022533897512,
+                         recall_-:0.8118651727126409,
+                         f1_-:0.8160124344270916,
+                         precision_micro:0.8169629253428136,
+                         precision_macro:0.8170707730099673,
+                         mcc:0.6340344499314811
+2022-09-07 11:23:09,152 - <module> - INFO - Melhor score: 0.6340344499314811
+2022-09-07 11:23:09,152 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.5, 'max_depth': 3, 'min_child_weight': 3, 'n_estimators': 10}
+2022-09-07 11:23:09,152 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1854.425901889801 segundos
+2022-09-07 11:23:09,152 - <module> - INFO - Aplicação finalizada
+
+dcvst_XGB_extra_parameters:
+2022-09-07 20:18:20,150 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 1834.5494177341461 segundos
+2022-09-07 20:18:20,150 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-07 20:18:20,150 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8989063596219721,
+                         accuracy: 0.8176739461655662,
+                          precision_+:0.817924993897212,
+                         recall_+:0.8173911518303001,
+                         f1_+:0.8176193406887922,
+                         precision_-:0.8175443198065967,
+                         recall_-:0.8179592257851512,
+                         f1_-:0.8177123283858873,
+                         precision_micro:0.8176739461655662,
+                         precision_macro:0.8177346568519044,
+                         mcc:0.6354098395594951
+2022-09-07 20:18:20,150 - <module> - INFO - Melhor score: 0.6354098395594951
+2022-09-07 20:18:20,150 - <module> - INFO - Melhores parâmetros: {'colsample_bytree': 0.8, 'gamma': 0.1, 'learning_rate': 0.01, 'max_depth': 3, 'min_child_weight': 5, 'n_estimators': 500, 'reg_alpha': 0.1, 'subsample': 0.6}
+2022-09-07 20:18:20,150 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1840.1026906967163 segundos
+2022-09-07 20:18:20,150 - <module> - INFO - Aplicação finalizada
+-------------------------------
+          ExtraTrees
+-------------------------------
+viral_etc:
+2022-09-06 18:59:50,921 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 11216.045573711395 segundos
+2022-09-06 18:59:50,921 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-06 18:59:50,922 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9071920052808051,
+                         accuracy: 0.8455524735653579,
+                          precision_+:0.8042112533503539,
+                         recall_+:0.7359501808159494,
+                         f1_+:0.7667289358734013,
+                         precision_-:0.8674271159209102,
+                         recall_-:0.9029550827423168,
+                         f1_-:0.8843695477996167,
+                         precision_micro:0.8455524735653579,
+                         precision_macro:0.835819184635632,
+                         mcc:0.6548439300947607
+2022-09-06 18:59:50,922 - <module> - INFO - Melhor score: 0.6548439300947607
+2022-09-06 18:59:50,922 - <module> - INFO - Melhores parâmetros: {'max_depth': 32, 'max_features': None, 'min_samples_split': 32, 'n_estimators': 50}
+2022-09-06 18:59:50,922 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 11223.820887565613 segundos
+2022-09-06 18:59:50,922 - <module> - INFO - Aplicação finalizada
+
+dcvst_etc:
+2022-09-06 22:34:20,509 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 8439.27568936348 segundos
+2022-09-06 22:34:20,509 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-06 22:34:20,510 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8948279064008915,
+                         accuracy: 0.8120873539867952,
+                          precision_+:0.8133394536169108,
+                         recall_+:0.8102820766786349,
+                         f1_+:0.8117313448554381,
+                         precision_-:0.8110784576861928,
+                         recall_-:0.8138987247740499,
+                         f1_-:0.8124094420391266,
+                         precision_micro:0.8120873539867952,
+                         precision_macro:0.8122089556515519,
+                         mcc:0.6242993324497583
+2022-09-06 22:34:20,510 - <module> - INFO - Melhor score: 0.6242993324497583
+2022-09-06 22:34:20,510 - <module> - INFO - Melhores parâmetros: {'max_depth': 8, 'max_features': None, 'min_samples_split': 32, 'n_estimators': 400}
+2022-09-06 22:34:20,510 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 8444.797683954239 segundos
+2022-09-06 22:34:20,510 - <module> - INFO - Aplicação finalizada
+
+---------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------
+Ensemble
+--------------------------------------------------------------
+
+dcvst_ensemble_all_features_default_parameters:
+2022-09-01 15:25:01,958 - cross_validate_ensemble - INFO - FInalizado GridSearchCV para o modelo
+2022-09-01 15:25:01,958 - <module> - INFO - Resultados encontrados: 
+                         roc_auc: 0.8560234823160414,
+                         accuracy: 0.7731843575418995,
+                          precision +:0.7853217997018045,
+                         recall +:0.7521889315339854,
+                         f1 +:0.7683022562260555,
+                         precision -:0.7622636171644281,
+                         recall -:0.7941925632454294,
+                         f1 -:0.7778191420415503,
+                         precision_micro:0.7731843575418995,
+                         f1 -:0.7737927084331163,
+                         mcc -:0.5469828656150575
+2022-09-01 15:25:01,958 - <module> - INFO - Score obtido: 0.8560234823160414
+2022-09-01 15:25:01,958 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 750.0874063968658 segundos
+2022-09-01 15:25:01,958 - <module> - INFO - Aplicação finalizada
+
+
+viral_ensemble_all_features_default_parameters:
+2022-09-01 16:35:06,653 - cross_validate_ensemble - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 1071.740787267685 segundos
+2022-09-01 16:35:06,653 - cross_validate_ensemble - INFO - FInalizado GridSearchCV para o modelo
+2022-09-01 16:35:06,653 - <module> - INFO - Resultados encontrados: 
+                         roc_auc: 0.8767826466082651,
+                         accuracy: 0.8104892382858384,
+                          precision +:0.761448799130282,
+                         recall +:0.6675617968091903,
+                         f1 +:0.7082898151784276,
+                         precision -:0.8360891761122344,
+                         recall -:0.8853427895981089,
+                         f1 -:0.8592418755129534,
+                         precision_micro:0.8104892382858384,
+                         f1 -:0.7987689876212583,
+                         mcc -:0.5744079133757112
+2022-09-01 16:35:06,653 - <module> - INFO - Score obtido: 0.8767826466082651
+2022-09-01 16:35:06,653 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1087.476303100586 segundos
+2022-09-01 16:35:06,653 - <module> - INFO - Aplicação finalizada
+
+
+dcvst_ensemble_aap_aat_aac_ctd_default_parameters:
+2022-09-01 14:17:54,823 - cross_validate_ensemble - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 280.938050031662 segundos
+2022-09-01 14:17:54,823 - cross_validate_ensemble - INFO - FInalizado GridSearchCV para o modelo
+2022-09-01 14:17:54,823 - <module> - INFO - Resultados encontrados: 
+                         roc_auc: 0.8776866410796089,
+                         accuracy: 0.787201625190452,
+                          precision +:0.7879058019266109,
+                         recall +:0.78610849737939,
+                         f1 +:0.7869820595575449,
+                         precision -:0.7865697462034761,
+                         recall -:0.7882992860385457,
+                         f1 -:0.7874093993337243,
+                         precision_micro:0.787201625190452,
+                         f1 -:0.7872377740650435,
+                         mcc -:0.5744416637382846
+2022-09-01 14:17:54,823 - <module> - INFO - Score obtido: 0.8776866410796089
+2022-09-01 14:17:54,824 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 286.61499667167664 segundos
+2022-09-01 14:17:54,824 - <module> - INFO - Aplicação finalizada
+
+viral_ensemble_aap_aat_aac_ctd_default_parameters:
+2022-09-01 14:04:30,405 - cross_validate_ensemble - INFO - FInalizado GridSearchCV para o modelo
+2022-09-01 14:04:30,405 - <module> - INFO - Resultados encontrados: 
+                         roc_auc: 0.8931325608570871,
+                         accuracy: 0.8301928718891108,
+                          precision +:0.786246365662514,
+                         recall +:0.7018710188043498,
+                         f1 +:0.740201135231185,
+                         precision -:0.8519275405138813,
+                         recall -:0.8973995271867612,
+                         f1 -:0.873711632152039,
+                         precision_micro:0.8301928718891108,
+                         f1 -:0.8190869530881976,
+                         mcc -:0.6182366013671212
+2022-09-01 14:04:30,405 - <module> - INFO - Score obtido: 0.8931325608570871
+2022-09-01 14:04:30,405 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 424.78130626678467 segundos
+2022-09-01 14:04:30,405 - <module> - INFO - Aplicação finalizada
+
+dcvst_ensemble_aap_aat_aac_ctd_using_hyperparameters:
+2022-09-02 11:21:15,682 - cross_validate_ensemble - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 344.18093156814575 segundos
+2022-09-02 11:21:15,682 - cross_validate_ensemble - INFO - FInalizado GridSearchCV para o modelo
+2022-09-02 11:21:15,686 - grid_search_ensemble - INFO - Modelo params_aap_aat_aac_ctd_ obteve score 0.8987493293714662
+2022-09-02 11:21:15,686 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-09-02 11:21:15,687 - grid_search_ensemble - INFO - params_aap_aat_aac_ctd_ : 0.8987493293714662
+2022-09-02 11:21:15,689 - <module> - INFO - Melhor score: 0.8987493293714662
+2022-09-02 11:21:15,689 - <module> - INFO - Melhor combinação: params_aap_aat_aac_ctd_
+2022-09-02 11:21:15,689 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1053.2275154590607 segundos
+2022-09-02 11:21:15,689 - <module> - INFO - Aplicação finalizada
+
+viral_ensemble_aap_aat_aac_ctd_using_hyperparameters:
+2022-09-04 23:31:27,988 - cross_validate_ensemble - INFO - FInalizado GridSearchCV para o modelo
+2022-09-04 23:31:27,990 - grid_search_ensemble - INFO - Modelo abc_gbc_etc obteve score 0.6521013397071542
+2022-09-04 23:31:27,991 - grid_search_ensemble - INFO - Fim do gridsearch ensemble. Resultados:
+2022-09-04 23:31:27,991 - grid_search_ensemble - INFO - abc_gbc : {'mean_test_auc_score': 0.9105740785692819, 'mean_test_accuracy': 0.8428378221061621, 'mean_test_scores_p_1': 0.7921920305741474, 'mean_test_scores_r_1': 0.7452027149113988, 'mean_test_scores_f_1_1': 0.7660374230276851, 'mean_test_scores_p_0': 0.8703296331893332, 'mean_test_scores_r_0': 0.8939716312056738, 'mean_test_scores_f_1_0': 0.881464323849179, 'mean_test_precision_micro': 0.8428378221061621, 'mean_test_precision_macro': 0.8312608318817404, 'mean_test_mcc': 0.6505244523792705}
+2022-09-04 23:31:27,991 - grid_search_ensemble - INFO - abc_etc : {'mean_test_auc_score': 0.9107856742585824, 'mean_test_accuracy': 0.8422941337670646, 'mean_test_scores_p_1': 0.801182008411136, 'mean_test_scores_r_1': 0.7280512850529723, 'mean_test_scores_f_1_1': 0.7610329473388122, 'mean_test_scores_p_0': 0.8638724317949074, 'mean_test_scores_r_0': 0.902127659574468, 'mean_test_scores_f_1_0': 0.8821104741158878, 'mean_test_precision_micro': 0.8422941337670646, 'mean_test_precision_macro': 0.8325272201030216, 'mean_test_mcc': 0.6471654416994893}
+2022-09-04 23:31:27,991 - grid_search_ensemble - INFO - gbc_etc : {'mean_test_auc_score': 0.9109700690272001, 'mean_test_accuracy': 0.8436131359963854, 'mean_test_scores_p_1': 0.7977996383816601, 'mean_test_scores_r_1': 0.7393349128749609, 'mean_test_scores_f_1_1': 0.7654226013800715, 'mean_test_scores_p_0': 0.8683438112516566, 'mean_test_scores_r_0': 0.89822695035461, 'mean_test_scores_f_1_0': 0.8824834123860642, 'mean_test_precision_micro': 0.8436131359963854, 'mean_test_precision_macro': 0.8330717248166584, 'mean_test_mcc': 0.6514659092635992}
+2022-09-04 23:31:27,991 - grid_search_ensemble - INFO - abc_gbc_etc : {'mean_test_auc_score': 0.9112635176078353, 'mean_test_accuracy': 0.8440009734289395, 'mean_test_scores_p_1': 0.798977935727464, 'mean_test_scores_r_1': 0.7386569484986295, 'mean_test_scores_f_1_1': 0.7656394959329451, 'mean_test_scores_p_0': 0.8681796712812302, 'mean_test_scores_r_0': 0.8991725768321512, 'mean_test_scores_f_1_0': 0.8828701549284677, 'mean_test_precision_micro': 0.8440009734289395, 'mean_test_precision_macro': 0.8335788035043471, 'mean_test_mcc': 0.6521013397071542}
+2022-09-04 23:31:27,993 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9112635176078353,
+                         accuracy: 0.8440009734289395,
+                          precision_+:0.798977935727464,
+                         recall_+:0.7386569484986295,
+                         f1_+:0.7656394959329451,
+                         precision_-:0.8681796712812302,
+                         recall_-:0.8991725768321512,
+                         f1_-:0.8828701549284677,
+                         precision_micro:0.8440009734289395,
+                         precision_macro:0.8335788035043471,
+                         mcc:0.6521013397071542
+2022-09-04 23:31:27,993 - <module> - INFO - Melhor score: 0.6521013397071542
+2022-09-04 23:31:27,993 - <module> - INFO - Melhor combinação: abc_gbc_etc
+2022-09-04 23:31:27,993 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1318.023903131485 segundos
+2022-09-04 23:31:27,993 - <module> - INFO - Aplicação finalizada
+
+
+--------------------------------------------------------------
+AdaBoost
+--------------------------------------------------------------
+
+dcvst_all_features_adaboost_gridsearch:
+2022-08-24 01:25:01,372 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-24 01:25:01,372 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8978243778630681,
+                         accuracy: 0.8153377348908075,
+                          precision +:0.8173904949120819,
+                         recall +:0.812312946225909,
+                         f1 +:0.8147786340840311,
+                         precision -:0.8135098526535705,
+                         recall -:0.8183671742808798,
+                         f1 -:0.8158654810823179,
+                         precision_micro:0.8153377348908075,
+                         f1 -:0.8154501737828262,
+                         mcc -:0.6307902189238732
+2022-08-24 01:25:01,372 - <module> - INFO - Melhor score: 0.8978243778630681
+2022-08-24 01:25:01,372 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.1, 'n_estimators': 260}
+2022-08-24 01:25:01,372 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 34054.81049275398 segundos
+2022-08-24 01:25:01,372 - <module> - INFO - Aplicação finalizada
+
+viral_all_features_adaboost_gridsearch:
+2022-08-25 15:17:35,264 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-25 15:17:35,264 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9091827253128064,
+                         accuracy: 0.8419067174718762,
+                          precision +:0.7976248810156353,
+                         recall +:0.7316586968527081,
+                         f1 +:0.7615150356046431,
+                         precision -:0.865058825288602,
+                         recall -:0.899645390070922,
+                         f1 -:0.8815821276822202,
+                         precision_micro:0.8419067174718762,
+                         f1 -:0.8313418531521186,
+                         mcc -:0.6465979923774217
+2022-08-25 15:17:35,264 - <module> - INFO - Melhor score: 0.9091827253128064
+2022-08-25 15:17:35,265 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.05, 'n_estimators': 320}
+2022-08-25 15:17:35,265 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 47250.70064115524 segundos
+2022-08-25 15:17:35,265 - <module> - INFO - Aplicação finalizada
+
+viral_Adaboost_aap_aat_aac_gridsearch:
+2022-08-29 19:10:30,013 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 2599.7897782325745 segundos
+2022-08-29 19:10:30,014 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-29 19:10:30,014 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9092608789078069,
+                         accuracy: 0.8401224787784368,
+                          precision +:0.7945271753866167,
+                         recall +:0.7278283508211156,
+                         f1 +:0.7582179406322921,
+                         precision -:0.863386173615693,
+                         recall -:0.898936170212766,
+                         f1 -:0.8804154166514342,
+                         precision_micro:0.8401224787784368,
+                         f1 -:0.828956674501155,
+                         mcc -:0.6419725704109522
+2022-08-29 19:10:30,014 - <module> - INFO - Melhor score: 0.9092608789078069
+2022-08-29 19:10:30,014 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.05, 'n_estimators': 480}
+2022-08-29 19:10:30,014 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 2600.6331417560577 segundos
+2022-08-29 19:10:30,014 - <module> - INFO - Aplicação finalizada
+
+dcvst_Adaboost_aap_aat_aac_ctd_gridsearch:
+2022-08-30 02:22:52,141 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 11428.163698196411 segundos
+2022-08-30 02:22:52,141 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-30 02:22:52,141 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8980972720894721,
+                         accuracy: 0.8164550533265617,
+                          precision +:0.8178339203035982,
+                         recall +:0.8145470678057034,
+                         f1 +:0.8161237689844854,
+                         precision -:0.8152828461046132,
+                         recall -:0.8183661425446742,
+                         f1 -:0.8167576610645924,
+                         precision_micro:0.8164550533265617,
+                         f1 -:0.8165583832041058,
+                         mcc -:0.6330149740017923
+2022-08-30 02:22:52,141 - <module> - INFO - Melhor score: 0.8980972720894721
+2022-08-30 02:22:52,141 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.1, 'n_estimators': 340}
+2022-08-30 02:22:52,141 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 11433.669634103775 segundos
+2022-08-30 02:22:52,141 - <module> - INFO - Aplicação finalizada
+
+viral_Adaboost_aap_aat_aac_ctd_gridsearch:
+2022-09-01 13:49:08,196 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 7412.113074302673 segundos
+2022-09-01 13:49:08,196 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-01 13:49:08,197 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9096471373360433,
+                         accuracy: 0.842372044179716,
+                          precision +:0.7976597838906386,
+                         recall +:0.7334632934715389,
+                         f1 +:0.7624173535930623,
+                         precision -:0.8658811369564521,
+                         recall -:0.8994089834515367,
+                         f1 -:0.8818728344541386,
+                         precision_micro:0.842372044179716,
+                         f1 -:0.8317704604235454,
+                         mcc -:0.647807116594352
+2022-09-01 13:49:08,197 - <module> - INFO - Melhor score: 0.9096471373360433
+2022-09-01 13:49:08,197 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.05, 'n_estimators': 400}
+2022-09-01 13:49:08,197 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 7419.601941347122 segundos
+2022-09-01 13:49:08,197 - <module> - INFO - Aplicação finalizada
+2022-09-05 03:05:28,775 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-05 03:05:28,775 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9089766997756019,
+                         accuracy: 0.8417515584338624,
+                          precision_+:0.7999273185773748,
+                         recall_+:0.7275970183818945,
+                         f1_+:0.7603072745004171,
+                         precision_-:0.8635483627741743,
+                         recall_-:0.9015366430260047,
+                         f1_-:0.881703012368231,
+                         precision_micro:0.8417515584338624,
+                         precision_macro:0.8317378406757745,
+                         mcc:0.6458613479230775
+2022-09-05 03:05:28,775 - <module> - INFO - Melhor score: 0.6458613479230775
+2022-09-05 03:05:28,775 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME.R', 'learning_rate': 0.05, 'n_estimators': 250}
+2022-09-05 03:05:28,775 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 1418.0986120700836 segundos
+2022-09-05 03:05:28,776 - <module> - INFO - Aplicação finalizada
+RESULTADO DO PEULTIMO TESTE
+2022-09-05 04:58:07,348 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 6541.559601068497 segundos
+2022-09-05 04:58:07,348 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-05 04:58:07,348 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9093673878837059,
+                         accuracy: 0.8419841766659216,
+                          precision_+:0.7975029780525882,
+                         recall_+:0.7321094006479344,
+                         f1_+:0.7616647079673353,
+                         precision_-:0.8652771913114179,
+                         recall_-:0.8995271867612292,
+                         f1_-:0.8816287798023845,
+                         precision_micro:0.8419841766659216,
+                         precision_macro:0.8313900846820031,
+                         mcc:0.6468104119455451
+2022-09-05 04:58:07,348 - <module> - INFO - Melhor score: 0.6468104119455451
+2022-09-05 04:58:07,348 - <module> - INFO - Melhores parâmetros: {'algorithm': 'SAMME', 'learning_rate': 0.1, 'n_estimators': 2000}
+2022-09-05 04:58:07,348 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 6549.305041074753 segundos
+2022-09-05 04:58:07,348 - <module> - INFO - Aplicação finalizada
+RESULTADO DO ULTIMO TESTE
+
+
+--------------------------------------------------------------
+Gradient Boosting
+--------------------------------------------------------------
+dcvst_gradientBoost_all_features_gridsearch:
+2022-08-28 22:38:55,440 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 17656.10854268074 segundos
+2022-08-28 22:38:55,440 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-28 22:38:55,440 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8981864140976435,
+                         accuracy: 0.8124936515997969,
+                          precision +:0.8114318548377035,
+                         recall +:0.8143448475093887,
+                         f1 +:0.812839788243962,
+                         precision -:0.8137062315327273,
+                         recall -:0.8106440097395898,
+                         f1 -:0.8121254933063536,
+                         precision_micro:0.8124936515997969,
+                         f1 -:0.8125690431852153,
+                         mcc -:0.6250634633051306
+2022-08-28 22:38:55,440 - <module> - INFO - Melhor score: 0.8981864140976435
+2022-08-28 22:38:55,440 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.01, 'max_depth': 4, 'max_features': None, 'n_estimators': 500}
+2022-08-28 22:38:55,440 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 17700.108390808105 segundos
+2022-08-28 22:38:55,440 - <module> - INFO - Aplicação finalizada
+
+viral_gradientBoost_all_features_gridsearch:
+2022-08-29 17:15:27,862 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 26037.637837409973 segundos
+2022-08-29 17:15:27,863 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-29 17:15:27,863 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9095444424933458,
+                         accuracy: 0.8438461753658105,
+                          precision +:0.7976271573542205,
+                         recall +:0.7393336404192995,
+                         f1 +:0.7657169835163654,
+                         precision -:0.8682319601757544,
+                         recall -:0.8985815602836877,
+                         f1 -:0.8827242961116675,
+                         precision_micro:0.8438461753658105,
+                         f1 -:0.8329295587649874,
+                         mcc -:0.6515375511847308
+2022-08-29 17:15:27,863 - <module> - INFO - Melhor score: 0.9095444424933458
+2022-08-29 17:15:27,863 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.01, 'max_depth': 3, 'max_features': None, 'n_estimators': 500}
+2022-08-29 17:15:27,863 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 26053.645246982574 segundos
+2022-08-29 17:15:27,863 - <module> - INFO - Aplicação finalizada
+
+dcvst_gradientBoost_aap_aat_aac_ctd_gridsearch:
+2022-08-30 09:47:54,700 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 6950.584179878235 segundos
+2022-08-30 09:47:54,700 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-30 09:47:54,700 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8985167760307045,
+                         accuracy: 0.8125952260030473,
+                          precision +:0.8123359898310379,
+                         recall +:0.8131251289670256,
+                         f1 +:0.812696920615981,
+                         precision -:0.8129585712189907,
+                         recall -:0.8120659485782674,
+                         f1 -:0.8124783734829771,
+                         precision_micro:0.8125952260030473,
+                         f1 -:0.8126472805250146,
+                         mcc -:0.6252428161534208
+2022-08-30 09:47:54,700 - <module> - INFO - Melhor score: 0.8985167760307045
+2022-08-30 09:47:54,700 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.01, 'max_depth': 4, 'max_features': None, 'n_estimators': 500}
+2022-08-30 09:47:54,700 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 6956.2934947013855 segundos
+2022-08-30 09:47:54,700 - <module> - INFO - Aplicação finalizada
+
+viral_gradientBoost_aap_aat_aac_ctd_gridsearch:
+2022-09-04 22:38:31,909 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 32435.435613155365 segundos
+2022-09-04 22:38:31,909 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-04 22:38:31,910 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9099180111093261,
+                         accuracy: 0.844156463360598,
+                          precision_+:0.791993122023874,
+                         recall_+:0.7497163696331001,
+                         f1_+:0.7685420881619588,
+                         precision_-:0.8722834004454153,
+                         recall_-:0.8936170212765957,
+                         f1_-:0.8823404291277279,
+                         precision_micro:0.844156463360598,
+                         precision_macro:0.8321382612346447,
+                         mcc:0.6535301575952561
+2022-09-04 22:38:31,910 - <module> - INFO - Melhor score: 0.6535301575952561
+2022-09-04 22:38:31,910 - <module> - INFO - Melhores parâmetros: {'learning_rate': 0.01, 'max_depth': 5, 'max_features': None, 'n_estimators': 500, 'subsample': 0.6}
+
+2022-09-01 01:40:38,064 - <module> - INFO - Aplicação finalizada
+
+--------------------------------------------------------------
+ETC
+--------------------------------------------------------------
+dcvst_ETC_aap_aat_aac_ctd_gridsearch:
+2022-08-31 14:08:19,514 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 8864.301356315613 segundos
+2022-08-31 14:08:19,514 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-08-31 14:08:19,514 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.8971715983657298,
+                         accuracy: 0.8130015236160487,
+                          precision +:0.8157035594173433,
+                         recall +:0.8088599314927161,
+                         f1 +:0.8122151707550461,
+                         precision -:0.8105010250345556,
+                         recall -:0.8171474557385168,
+                         f1 -:0.813759270649704,
+                         precision_micro:0.8130015236160487,
+                         f1 -:0.8131022922259493,
+                         mcc -:0.6261059723862008
+2022-08-31 14:08:19,514 - <module> - INFO - Melhor score: 0.8971715983657298
+2022-08-31 14:08:19,514 - <module> - INFO - Melhores parâmetros: {'max_depth': 10, 'max_features': None, 'min_samples_split': 10, 'n_estimators': 500}
+2022-08-31 14:08:19,514 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 8893.162761211395 segundos
+2022-08-31 14:08:19,514 - <module> - INFO - Aplicação finalizada
+
+viral_ETC_aap_aat_aac_ctd_gridsearch:
+2022-09-05 02:35:16,599 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 4140.303190231323 segundos
+2022-09-05 02:35:16,599 - grid_search - INFO - FInalizado GridSearchCV para o modelo {model_param}
+2022-09-05 02:35:16,599 - <module> - INFO - Melhores resultados: 
+                         roc_auc: 0.9077690145892185,
+                         accuracy: 0.8441560723044728,
+                          precision_+:0.8040621919130363,
+                         recall_+:0.7330151345876352,
+                         f1_+:0.7646469821097344,
+                         precision_-:0.8660672713117897,
+                         recall_-:0.9023640661938535,
+                         f1_-:0.8832638177350043,
+                         precision_micro:0.8441560723044728,
+                         precision_macro:0.835064731612413,
+                         mcc:0.6522557294903033
+2022-09-05 02:35:16,599 - <module> - INFO - Melhor score: 0.6522557294903033
+2022-09-05 02:35:16,599 - <module> - INFO - Melhores parâmetros: {'max_depth': 50, 'max_features': None, 'min_samples_split': 7, 'n_estimators': 500}
+2022-09-05 02:35:16,599 - <module> - DEBUG - Tempo gasto em segundos para executar toda a aplicação: 4147.961479187012 segundos
+2022-09-05 02:35:16,599 - <module> - INFO - Aplicação finalizada
+
+
+---------------------------------------------------------------------------------------------------------
+
 SVC:
 2022-08-05 15:29:52,508 - grid_search - DEBUG - Tempo gasto em segundos para executar o GridSearchCV: 81.84894371032715 segundos
 2022-08-05 15:29:52,509 - grid_search - INFO - FInalizado GridSearchCV para o modelo
