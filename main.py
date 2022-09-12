@@ -1,12 +1,14 @@
+from audioop import cross
 from classes.features import AAP, AAT, AAC, DPC, CTD, ProtVec
 from classes.command_line import Cli
 from classes.file import File
 from classes.model import Model
 from utils.setup_logger import logger
-
+from sklearn.model_selection import cross_validate
 from time import time
 from os.path import exists
-
+from sklearn.metrics._scorer import make_scorer
+from sklearn.metrics import recall_score, precision_score, accuracy_score, f1_score,roc_auc_score, matthews_corrcoef
 import sys
 import numpy as np
 
@@ -36,6 +38,9 @@ if __name__=='__main__':
     positive_sequences = file_handler.get_sequences_from_file(positive_file)
     negative_sequences = file_handler.get_sequences_from_file(negative_file)
 
+    positive_sequences_validation = file_handler.get_sequences_from_file("dataset/independent/independent-pos.txt")
+    negative_sequences_validation = file_handler.get_sequences_from_file("dataset/independent/independent-neg.txt")
+
     # Remoção das variáveis que apontam para os arquivos de sequência
     # A partir desse ponto do código, apenas as variáveis com as sequências serão utilizadas
     del positive_file
@@ -44,9 +49,13 @@ if __name__=='__main__':
     feature_list = []
 
     dataset = positive_sequences + negative_sequences
+    validation_dataset = positive_sequences_validation + negative_sequences_validation
+    
     target = [1] * len(positive_sequences) + [0] * len(negative_sequences)
+    validation_target = [1] * len(positive_sequences_validation) + [0] * len(negative_sequences_validation)
 
     features = np.empty([len(dataset), 1])
+    validation_features = np.empty([len(validation_dataset), 1])
 
     if cli.get_arg_from_cli('aat_feature'):
 
@@ -62,7 +71,7 @@ if __name__=='__main__':
             logger.info(f"Dicionário AAT para o dataset {dataset_name} não existe!")
 
             # Realiza a criação dos arquivos com a escala AAT para as sequências passadas como parâmetro
-            aat_scale = aat.generate_aat_scale(positive_sequences, negative_sequences)
+            aat_scale = aat.generate_aat_scale(positive_sequences_validation, negative_sequences_validation)
 
             # Salva escala gerada em um arquivo
             file_handler.save_dict_in_file(path_to_file, aat_scale)
@@ -73,10 +82,14 @@ if __name__=='__main__':
             # Caso o arquivo já exista é realizada a leitura da escala já calculada
             aat_scale = file_handler.transform_file_in_dict(path_to_file)
 
+        validation_aat_scale = aat.generate_aat_scale(positive_sequences, negative_sequences)
+
         # Extração da feature aat para cada peptídeo do dataset
         aat_feature = aat.extract_aat_feature(dataset, aat_scale)
+        validation_aat_feature = aat.extract_aat_feature(validation_dataset, validation_aat_scale)
 
         features = np.column_stack((features, aat_feature))
+        validation_features = np.column_stack((validation_features, validation_aat_feature))
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aat')
 
@@ -105,10 +118,14 @@ if __name__=='__main__':
             # Caso o arquivo já exista é realizada a leitura da escala já calculada
             aap_scale = file_handler.transform_file_in_dict(path_to_file)
 
+        validation_aap_scale = aap.generate_aap_scale(positive_sequences_validation, negative_sequences_validation)
+
         # Extração da feature aap para cada peptídeo do dataset
         aap_feature = aap.extract_aap_feature(dataset, aap_scale)
+        validation_aap_feature = aap.extract_aap_feature(validation_dataset, validation_aap_scale)
 
         features = np.column_stack((features, aap_feature))
+        validation_features = np.column_stack((validation_features, validation_aap_feature))
 
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aap')
@@ -121,7 +138,10 @@ if __name__=='__main__':
         # Extração da feature aac para cada peptídeo do dataset
         aac_feature = aac.extract_aac_feature(dataset)
 
+        validation_aac_feature = aac.extract_aac_feature(validation_dataset)
+
         features = np.column_stack((features, aac_feature))
+        validation_features = np.column_stack((validation_features, validation_aac_feature))
 
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('aac')
@@ -133,8 +153,10 @@ if __name__=='__main__':
 
         # Extração da feature aac para cada peptídeo do dataset
         ctd_feature = ctd.extract_ctd_feature(dataset)
+        validation_ctd_feature = ctd.extract_ctd_feature(validation_dataset)
 
         features = np.column_stack((features, ctd_feature))
+        validation_features = np.column_stack((validation_features, validation_ctd_feature))
 
         # Salvando a feature que será utilizada para treinar o modelo
         feature_list.append('ctd')
@@ -173,6 +195,7 @@ if __name__=='__main__':
     logger.info(f"Features que estão sendo utilizadas para treinar o modelo: {feature_list}")
 
     x, y = model.prepare_x_and_y(features, target)
+    x_val, y_val = model.prepare_x_and_y(validation_features, validation_target)
     
     logger.info(f"Quantidade de features por peptídeo: {len(x[0])}")
 
@@ -200,8 +223,22 @@ if __name__=='__main__':
         logger.info(f"Melhor score: {gridsearch_model.best_score_}")
         logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
 
-        model.plot_grid_search(gridsearch_model)
+        #model.plot_grid_search(gridsearch_model)
+        model.plot_search_results(gridsearch_model, cli.get_arg_from_cli("dataset-name"))
         #model.table_grid_search(gridsearch_model, all_ranks=True)
+
+        logger.info(f'Dataset de validação:')
+        logger.info(f"Quantidade de features por peptídeo (validacao): {len(x_val[0])}")
+
+
+        preds = gridsearch_model.predict(x_val)
+
+        logger.info(  f"Resultados validação: \n \
+                        roc_auc: {roc_auc_score(y_val, preds)},\n \
+                        accuracy: {accuracy_score(y_val, preds)},\n  \
+                        precision:{precision_score(y_val, preds)},\n \
+                        recall:{recall_score(y_val, preds)},\n \
+                        mcc:{matthews_corrcoef(y_val, preds)}")
 
         time_end = time()
 

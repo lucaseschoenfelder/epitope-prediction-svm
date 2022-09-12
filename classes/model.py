@@ -21,6 +21,7 @@ import plotly.graph_objs as go
 import pprint
 from scipy import stats
 from IPython.display import display
+import matplotlib.pyplot as plt 
 
 class Model():
     """Classe que contém as definições do modelo de ML que será usado no projeto"""
@@ -238,6 +239,39 @@ class Model():
 
         logger.info(cv_results.head())
 
+
+    def plot_search_results(self, grid, plot_name):
+        ## Results from grid search
+        results = grid.cv_results_
+        means_test = results['mean_test_mcc']
+        stds_test = results['std_test_mcc']
+
+        ## Getting indexes of values per hyper-parameter
+        masks=[]
+        masks_names= list(grid.best_params_.keys())
+        for p_k, p_v in grid.best_params_.items():
+            masks.append(list(results['param_'+p_k].data==p_v))
+
+        params=grid.param_grid
+
+        ## Ploting results
+        fig, ax = plt.subplots(1,len(params),sharex='none', sharey='all',figsize=(20,5))
+        fig.suptitle('mcc per parameter')
+        fig.text(0.04, 0.5, 'MEAN mcc', va='center', rotation='vertical')
+        pram_preformace_in_best = {}
+        for i, p in enumerate(masks_names):
+            m = np.stack(masks[:i] + masks[i+1:])
+            pram_preformace_in_best
+            best_parms_mask = m.all(axis=0)
+            best_index = np.where(best_parms_mask)[0]
+            x = np.array(params[p])
+            y_1 = np.array(means_test[best_index])
+            e_1 = np.array(stds_test[best_index])
+            ax[i].errorbar(x, y_1, e_1, linestyle='--', marker='o', label='test')
+            ax[i].set_xlabel(p.upper())
+
+        plt.legend()
+        plt.savefig(f'{plot_name}.png')
 
     def cross_validate_ensemble(self, estimators, params, x, y, path_csv_result):
         logger.info(f"Iniciando Cross Validate para o modelo ensemble")
