@@ -21,6 +21,8 @@ import plotly.graph_objs as go
 import pprint
 from scipy import stats
 #from IPython.display import display
+import logging
+logging.getLogger('matplotlib').setLevel(logging.WARNING)
 import matplotlib.pyplot as plt 
 
 class Model():
@@ -358,20 +360,25 @@ class Model():
 
         time_init = time()
 
-        if testAllCombinations:
-            estimators_combinations = list()
-            logger.info(f'Gerando lista de combinações de classificadores')
-            for n in range(2, len(estimators) + 1):
-                estimators_combinations += list(combinations(estimators, n))
+        # if testAllCombinations:
+        #     estimators_combinations = list()
+        #     logger.info(f'Gerando lista de combinações de classificadores')
+        #     for n in range(2, len(estimators) + 1):
+        #         estimators_combinations += list(combinations(estimators, n))
             
-            if len(estimators_combinations) < 1:
-                logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
-                exit(-1)
+        #     if len(estimators_combinations) < 1:
+        #         logger.warn(f'Cancelando execução pois nenhuma combinação foi gerada.')
+        #         exit(-1)
 
-            for combination in estimators_combinations:
-                logger.info(f'combination : {combination}')
-        else:
-            estimators_combinations = [estimators]
+        #     for combination in estimators_combinations:
+        #         logger.info(f'combination : {combination}')
+        # else:
+        #     estimators_combinations = [estimators]
+        estimators_combinations = [
+            [('abc', AdaBoostClassifier()), ('etc', ExtraTreesClassifier())],
+            [('gbc', GradientBoostingClassifier()), ('etc', ExtraTreesClassifier())],
+            [('abc', AdaBoostClassifier()), ('gbc', GradientBoostingClassifier()), ('etc', ExtraTreesClassifier())]
+        ]
 
         logger.info(f'estimators_combinations = {estimators_combinations}')
         results = dict()

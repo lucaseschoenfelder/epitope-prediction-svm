@@ -1,14 +1,10 @@
-from audioop import cross
 from classes.features import AAP, AAT, AAC, DPC, CTD, ProtVec
 from classes.command_line import Cli
 from classes.file import File
 from classes.model import Model
 from utils.setup_logger import logger
-from sklearn.model_selection import cross_validate
 from time import time
 from os.path import exists
-from sklearn.metrics._scorer import make_scorer
-from sklearn.metrics import recall_score, precision_score, accuracy_score, f1_score,roc_auc_score, matthews_corrcoef
 import sys
 import numpy as np
 
@@ -271,30 +267,30 @@ if __name__=='__main__':
 
         logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
         logger.info("Aplicação finalizada")
-    else:
-        logger.info(f'Rodando ensemble com todos os parametros default')
-        gridsearch_model = model.cross_validate_ensemble(None, None, x, y, cli.get_arg_from_cli('result_path'))
+    # else:
+    #     logger.info(f'Rodando ensemble com todos os parametros default')
+    #     gridsearch_model = model.cross_validate_ensemble(None, None, x, y, cli.get_arg_from_cli('result_path'))
 
-        results = gridsearch_model.cv_results_
-        bi = gridsearch_model.best_index_
+    #     results = gridsearch_model.cv_results_
+    #     bi = gridsearch_model.best_index_
 
-        logger.info(  f"Resultados encontrados: \n \
-                        roc_auc: {results['mean_test_auc_score'][bi]},\n \
-                        accuracy: {results['mean_test_accuracy'][bi]},\n  \
-                        precision +:{results['mean_test_scores_p_1'][bi]},\n \
-                        recall +:{results['mean_test_scores_r_1'][bi]},\n \
-                        f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
-                        precision -:{results['mean_test_scores_p_0'][bi]},\n \
-                        recall -:{results['mean_test_scores_r_0'][bi]},\n \
-                        f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
-                        precision_micro:{results['mean_test_precision_micro'][bi]},\n \
-                        f1 -:{results['mean_test_precision_macro'][bi]},\n \
-                        mcc -:{results['mean_test_mcc'][bi]}")
+    #     logger.info(  f"Resultados encontrados: \n \
+    #                     roc_auc: {results['mean_test_auc_score'][bi]},\n \
+    #                     accuracy: {results['mean_test_accuracy'][bi]},\n  \
+    #                     precision +:{results['mean_test_scores_p_1'][bi]},\n \
+    #                     recall +:{results['mean_test_scores_r_1'][bi]},\n \
+    #                     f1 +:{results['mean_test_scores_f_1_1'][bi]},\n \
+    #                     precision -:{results['mean_test_scores_p_0'][bi]},\n \
+    #                     recall -:{results['mean_test_scores_r_0'][bi]},\n \
+    #                     f1 -:{results['mean_test_scores_f_1_0'][bi]},\n \
+    #                     precision_micro:{results['mean_test_precision_micro'][bi]},\n \
+    #                     f1 -:{results['mean_test_precision_macro'][bi]},\n \
+    #                     mcc -:{results['mean_test_mcc'][bi]}")
 
-        logger.info(f"Score obtido: {gridsearch_model.best_score_}")
-        # logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
+    #     logger.info(f"Score obtido: {gridsearch_model.best_score_}")
+    #     # logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
 
-        time_end = time()
+    #     time_end = time()
 
-        logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
-        logger.info("Aplicação finalizada") 
+    #     logger.debug(f"Tempo gasto em segundos para executar toda a aplicação: {time_end - time_init} segundos")
+    #     logger.info("Aplicação finalizada") 

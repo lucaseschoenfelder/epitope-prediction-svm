@@ -2,18 +2,18 @@
     "abc" : {
         "abc__algorithm": ["SAMME.R"],
         "abc__learning_rate": [0.05],
-        "abc__n_estimators": [750]
+        "abc__n_estimators": [400]
     },
     "gbc" : {
-        "gbc__learning_rate": [0.25],
+        "gbc__learning_rate": [0.1],
         "gbc__max_depth": [3],
         "gbc__max_features": [169],
-        "gbc__n_estimators": [10]
+        "gbc__n_estimators": [50]
     },
     "etc" : {
-        "etc__max_depth": [8],
+        "etc__max_depth": ["None"],
         "etc__max_features": [169],
         "etc__min_samples_split": [32],
-        "etc__n_estimators": [400]
+        "etc__n_estimators": [750]
     }
 }
