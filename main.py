@@ -224,21 +224,21 @@ if __name__=='__main__':
         logger.info(f"Melhores parâmetros: {gridsearch_model.best_params_}")
 
         #model.plot_grid_search(gridsearch_model)
-        model.plot_search_results(gridsearch_model, cli.get_arg_from_cli("dataset-name"))
+        model.plot_search_results(gridsearch_model, cli.get_arg_from_cli("dataset_name"))
         #model.table_grid_search(gridsearch_model, all_ranks=True)
 
-        logger.info(f'Dataset de validação:')
-        logger.info(f"Quantidade de features por peptídeo (validacao): {len(x_val[0])}")
+        # logger.info(f'Dataset de validação:')
+        # logger.info(f"Quantidade de features por peptídeo (validacao): {len(x_val[0])}")
 
 
-        preds = gridsearch_model.predict(x_val)
+        # preds = gridsearch_model.predict(x_val)
 
-        logger.info(  f"Resultados validação: \n \
-                        roc_auc: {roc_auc_score(y_val, preds)},\n \
-                        accuracy: {accuracy_score(y_val, preds)},\n  \
-                        precision:{precision_score(y_val, preds)},\n \
-                        recall:{recall_score(y_val, preds)},\n \
-                        mcc:{matthews_corrcoef(y_val, preds)}")
+        # logger.info(  f"Resultados validação: \n \
+        #                 roc_auc: {roc_auc_score(y_val, preds)},\n \
+        #                 accuracy: {accuracy_score(y_val, preds)},\n  \
+        #                 precision:{precision_score(y_val, preds)},\n \
+        #                 recall:{recall_score(y_val, preds)},\n \
+        #                 mcc:{matthews_corrcoef(y_val, preds)}")
 
         time_end = time()
 

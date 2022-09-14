@@ -20,7 +20,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objs as go
 import pprint
 from scipy import stats
-from IPython.display import display
+#from IPython.display import display
 import matplotlib.pyplot as plt 
 
 class Model():
@@ -256,8 +256,8 @@ class Model():
 
         ## Ploting results
         fig, ax = plt.subplots(1,len(params),sharex='none', sharey='all',figsize=(20,5))
-        fig.suptitle('mcc per parameter')
-        fig.text(0.04, 0.5, 'MEAN mcc', va='center', rotation='vertical')
+        fig.suptitle('MCC por parâmetro')
+        fig.text(0.04, 0.5, 'MCC', va='center', rotation='vertical')
         pram_preformace_in_best = {}
         for i, p in enumerate(masks_names):
             m = np.stack(masks[:i] + masks[i+1:])
@@ -265,12 +265,17 @@ class Model():
             best_parms_mask = m.all(axis=0)
             best_index = np.where(best_parms_mask)[0]
             x = np.array(params[p])
+            if p == "max_depth":
+                x[np.where(x == None)] = float('NaN')
+            else:
+                x[np.where(x == None)] = "None"
+
             y_1 = np.array(means_test[best_index])
             e_1 = np.array(stds_test[best_index])
             ax[i].errorbar(x, y_1, e_1, linestyle='--', marker='o', label='test')
             ax[i].set_xlabel(p.upper())
 
-        plt.legend()
+        #plt.legend()
         plt.savefig(f'{plot_name}.png')
 
     def cross_validate_ensemble(self, estimators, params, x, y, path_csv_result):
@@ -502,8 +507,8 @@ class Model():
             params = {
                 'n_estimators' : [5, 10, 25, 50, 100, 200, 300, 400, 500, 750, 1000],
                 'max_features': ['sqrt', 'log2', None],
-                'min_samples_split' : [2, 8, 16, 32],
-                'max_depth': [1, 2, 8, 16, 32, None]
+                'min_samples_split' : [2, 8, 16, 32, 64, 128],
+                'max_depth': [2, 8, 16, None]
             }
         else:
             logger.info(f'Usando modelo SVC')
